@@ -7,6 +7,7 @@ import android.util.Log;
 
 public class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
+    static final String EARTHQUAKE_QUERY = "EARTHQUAKE_QUERY";
 
     public void activateToolbar(boolean enableHome) {
         Log.d(TAG, "activateToolbar: starts");

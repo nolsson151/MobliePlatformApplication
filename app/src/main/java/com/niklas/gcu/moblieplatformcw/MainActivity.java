@@ -17,11 +17,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     private ListView listEarthquakes;
     private EarthquakeAdapter earthquakeAdapter;
+    public static ArrayList<Earthquake> earthquakeArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class MainActivity extends BaseActivity {
             return true;
         }
         if (id == R.id.action_search) {
-            Log.d(TAG, "onOptionsItemSelected: Search clicked");
+            Log.d(TAG, "onOptionsItemSelected: Item selected: "+ id);
             Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             startActivity(intent);
             Log.d(TAG, "onOptionsItemSelected: Search activity started");
@@ -72,30 +74,11 @@ public class MainActivity extends BaseActivity {
             Log.d(TAG, "onPostExecute: parameter is " + s);
             final ParseEarthquakes parseEarthquakes = new ParseEarthquakes();
             parseEarthquakes.parse(s);
+            earthquakeArrayList = parseEarthquakes.getEarthquakes();
 
-            earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, parseEarthquakes.getEarthquakes());
+
+            earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, earthquakeArrayList);
             listEarthquakes.setAdapter(earthquakeAdapter);
-
-            listEarthquakes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    int i = listEarthquakes.getPositionForView(view);
-                    Earthquake earthquake = parseEarthquakes.getEarthquakes().get(i);
-                    Intent intent = new Intent(view.getContext(), EarthquakeActivity.class);
-                    intent.putExtra("title", earthquake.getTitle());
-                    intent.putExtra("magnitude", earthquake.getMagnitude());
-                    intent.putExtra("location", earthquake.getLocation());
-                    intent.putExtra("depth", earthquake.getDepth());
-                    intent.putExtra("link", earthquake.getLink());
-                    intent.putExtra("pubDate", earthquake.getPubDate());
-                    intent.putExtra("category", earthquake.getCategory());
-                    intent.putExtra("geoLat", earthquake.getGeoLat());
-                    intent.putExtra("geoLong", earthquake.getGeoLong());
-                    intent.putExtra("details", earthquake.getDetails());
-                    startActivity(intent);
-
-                }
-            });
         }
 
         @Override

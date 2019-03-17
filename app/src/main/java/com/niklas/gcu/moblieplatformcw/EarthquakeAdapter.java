@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -19,12 +20,14 @@ public class EarthquakeAdapter extends ArrayAdapter {
     private final int layoutResource;
     private final  LayoutInflater layoutInflater;
     private List<Earthquake> earthquakes;
+    private ArrayList<Earthquake> arraylist;
 
     public EarthquakeAdapter(Context context, int resource, List<Earthquake> earthquakes) {
         super(context, resource);
         this.layoutResource = resource;
         this.layoutInflater = LayoutInflater.from(context);
         this.earthquakes = earthquakes;
+
     }
 
     @Override
@@ -32,6 +35,10 @@ public class EarthquakeAdapter extends ArrayAdapter {
         return earthquakes.size();
     }
 
+    @Override
+    public Object getItem(int position){
+        return earthquakes.get(position);
+    }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -52,14 +59,30 @@ public class EarthquakeAdapter extends ArrayAdapter {
         viewHolder.tvDate.setText(currentEarthquake.getPubDate());
         viewHolder.tvDetails.setText(currentEarthquake.getDetails());
 
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), EarthquakeActivity.class);
+                intent.putExtra("title", earthquakes.get(position).getTitle());
+                intent.putExtra("magnitude", earthquakes.get(position).getMagnitude());
+                intent.putExtra("location", earthquakes.get(position).getLocation());
+                intent.putExtra("depth", earthquakes.get(position).getDepth());
+                intent.putExtra("link", earthquakes.get(position).getLink());
+                intent.putExtra("pubDate", earthquakes.get(position).getPubDate());
+                intent.putExtra("category", earthquakes.get(position).getCategory());
+                intent.putExtra("geoLat", earthquakes.get(position).getGeoLat());
+                intent.putExtra("geoLong", earthquakes.get(position).getGeoLong());
+                intent.putExtra("details", earthquakes.get(position).getDetails());
+                view.getContext().startActivity(intent);
+
+            }
+        });
+
         return convertView;
     }
 
     private class ViewHolder{
-        final TextView tvLocation;
-        final TextView tvMagnitude;
-        final TextView tvDate;
-        final TextView tvDetails;
+        final TextView tvLocation, tvMagnitude, tvDate, tvDetails;
 
         ViewHolder(View v){
             this.tvLocation = v.findViewById(R.id.tvLocation);
@@ -70,22 +93,19 @@ public class EarthquakeAdapter extends ArrayAdapter {
 
     }
 
-//    public void filter(String charText) {
-//        charText = charText.toLowerCase(Locale.getDefault());
-//        earthquakes.clear();
-//        if (charText.length() == 0) {
-//            earthquakes.addAll(arraylist);
-//        }
-//        else
-//        {
-//            for (WorldPopulation wp : arraylist)
-//            {
-//                if (wp.getCountry().toLowerCase(Locale.getDefault()).contains(charText))
-//                {
-//                    worldpopulationlist.add(wp);
-//                }
-//            }
-//        }
-//        notifyDataSetChanged();
-//    }
+    public void filter(String charText) {
+        arraylist.addAll(MainActivity.earthquakeArrayList);
+        charText = charText.toLowerCase(Locale.getDefault());
+        earthquakes.clear();
+        if (charText.length() == 0) {
+            earthquakes.addAll(arraylist);
+        } else {
+            for (Earthquake e : arraylist) {
+                if (e.getLocation().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    earthquakes.add(e);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
 }
