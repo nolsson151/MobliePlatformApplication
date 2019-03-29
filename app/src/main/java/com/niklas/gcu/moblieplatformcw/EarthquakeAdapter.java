@@ -95,7 +95,6 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     }
 
     public void filter(String charText){
-        arrayList.addAll(earthquakes);
         charText = charText.toUpperCase(Locale.getDefault());
         earthquakes.clear();
         if(charText.length()==0){
