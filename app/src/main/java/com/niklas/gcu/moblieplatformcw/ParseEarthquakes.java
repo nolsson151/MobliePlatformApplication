@@ -91,10 +91,10 @@ public class ParseEarthquakes {
                 }
                 eventType = parser.next();
             }
-            for(Earthquake e: earthquakes) {
-                Log.d(TAG, "**********************");
-                Log.d(TAG, e.toString());
-            }
+//            for(Earthquake e: earthquakes) {
+//                Log.d(TAG, "**********************");
+//                Log.d(TAG, e.toString());
+//            }
 
         }catch (Exception e){
             status = false;

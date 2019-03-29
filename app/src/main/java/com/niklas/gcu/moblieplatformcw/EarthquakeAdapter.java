@@ -9,20 +9,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class EarthquakeAdapter extends ArrayAdapter {
+public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     private static final String TAG = "EarthquakeAdapter";
     private final int layoutResource;
     private final  LayoutInflater layoutInflater;
-    private List<Earthquake> earthquakes;
-    private ArrayList<Earthquake> arraylist;
+    public ArrayList<Earthquake> earthquakes;
+    public ArrayList<Earthquake> orig;
 
-    public EarthquakeAdapter(Context context, int resource, List<Earthquake> earthquakes) {
+
+    public EarthquakeAdapter(Context context, int resource, ArrayList<Earthquake> earthquakes) {
         super(context, resource);
         this.layoutResource = resource;
         this.layoutInflater = LayoutInflater.from(context);
@@ -80,6 +83,36 @@ public class EarthquakeAdapter extends ArrayAdapter {
 
         return convertView;
     }
+    public Filter getFilter(){
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults oReturn = new FilterResults();
+                final ArrayList<Earthquake> results = new ArrayList<Earthquake>();
+                if (orig == null)
+                    orig = earthquakes;
+                if (constraint != null) {
+                    if (orig != null && orig.size() > 0) {
+                        for (final Earthquake g : orig) {
+                            if (g.getLocation().toUpperCase()
+                                    .contains(constraint.toString().toUpperCase()))
+                                results.add(g);
+                        }
+                    }
+                    oReturn.values = results;
+                }
+                return oReturn;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint,
+                                          FilterResults results) {
+                earthquakes = (ArrayList<Earthquake>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 
     private class ViewHolder{
         final TextView tvLocation, tvMagnitude, tvDate, tvDetails;
@@ -91,21 +124,23 @@ public class EarthquakeAdapter extends ArrayAdapter {
             this.tvDetails = v.findViewById(R.id.tvDetails);
         }
 
+
+
     }
 
-    public void filter(String charText) {
-        arraylist.addAll(MainActivity.earthquakeArrayList);
-        charText = charText.toLowerCase(Locale.getDefault());
-        earthquakes.clear();
-        if (charText.length() == 0) {
-            earthquakes.addAll(arraylist);
-        } else {
-            for (Earthquake e : arraylist) {
-                if (e.getLocation().toLowerCase(Locale.getDefault()).contains(charText)) {
-                    earthquakes.add(e);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
+//    public void filter(String charText) {
+//        arraylist.addAll(MainActivity.earthquakeArrayList);
+//        charText = charText.toLowerCase(Locale.getDefault());
+//        earthquakes.clear();
+//        if (charText.length() == 0) {
+//            earthquakes.addAll(arraylist);
+//        } else {
+//            for (Earthquake e : arraylist) {
+//                if (e.getLocation().toLowerCase(Locale.getDefault()).contains(charText)) {
+//                    earthquakes.add(e);
+//                }
+//            }
+//        }
+//        notifyDataSetChanged();
+//    }
 }

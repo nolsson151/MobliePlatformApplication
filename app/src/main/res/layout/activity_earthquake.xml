@@ -47,7 +47,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tvLocation"
         tools:text="@string/earthquake_magnitude" />
 
     <TextView
@@ -55,13 +55,13 @@
         android:layout_width="0dp"
         android:layout_height="27dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:textAlignment="textEnd"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLocation"
+        app:layout_constraintTop_toBottomOf="@+id/tvMagnitude"
         tools:text="@string/earthquake_date" />
 
     <TextView

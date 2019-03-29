@@ -48,6 +48,7 @@ public class SearchActivity extends BaseActivity {
                 Log.d(TAG, "onQueryTextSubmit: called, query was "+ query);
 
 
+
                 mSearchView.clearFocus();
                 finish();
                 return true;

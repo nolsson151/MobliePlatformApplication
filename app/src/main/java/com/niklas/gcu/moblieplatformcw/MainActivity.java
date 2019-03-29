@@ -1,14 +1,11 @@
 package com.niklas.gcu.moblieplatformcw;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -26,6 +23,7 @@ public class MainActivity extends BaseActivity {
     private ListView listEarthquakes;
     private EarthquakeAdapter earthquakeAdapter;
     public static ArrayList<Earthquake> earthquakeArrayList;
+    public ParseEarthquakes parseEarthquakes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +34,12 @@ public class MainActivity extends BaseActivity {
         Log.d(TAG, "onCreate: Starting AsyncTak");
         DownloadData downloadData = new DownloadData();
         downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
-
         Log.d(TAG, "onCreate: done");
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Log.d(TAG, "onCreateOptionsMenu: created");
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem myActionMenuItem = menu.findItem(R.id.action_search);
@@ -55,12 +52,11 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                if (TextUtils.isEmpty(s)){
-                    earthquakeAdapter.filter("");
+
+                if (TextUtils.isEmpty(s)) {
                     listEarthquakes.clearTextFilter();
-                }
-                else {
-                    earthquakeAdapter.filter(s);
+                } else {
+                    listEarthquakes.setFilterText(s);
                 }
                 return true;
             }
@@ -68,16 +64,24 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id==R.id.action_settings){
-            //do your functionality here
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        Log.d(TAG, "onOptionsItemSelected: Begin");
+//        int id = item.getItemId();
+//
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//        if (id == R.id.action_search) {
+//            Log.d(TAG, "onOptionsItemSelected: Item selected: "+ id);
+//            return true;
+//        }
+//
+//        Log.d(TAG, "onOptionsItemSelected() returned: returned");
+//        return true;
+//    }
 
 
     private class DownloadData extends AsyncTask<String, Void, String> {
@@ -87,13 +91,15 @@ public class MainActivity extends BaseActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Log.d(TAG, "onPostExecute: parameter is " + s);
-            final ParseEarthquakes parseEarthquakes = new ParseEarthquakes();
+            parseEarthquakes = new ParseEarthquakes();
             parseEarthquakes.parse(s);
-            earthquakeArrayList = parseEarthquakes.getEarthquakes();
-            Log.d(TAG, "onPostExecute: arraylist Item 0: "+earthquakeArrayList.indexOf(0));
+
+            //Log.d(TAG, "onPostExecute: arraylist Item 0: "+parseEarthquakes.getEarthquakes().toString());
 
             earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, parseEarthquakes.getEarthquakes());
             listEarthquakes.setAdapter(earthquakeAdapter);
+
+
         }
 
         @Override
