@@ -22,7 +22,6 @@ public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     private ListView listEarthquakes;
     private EarthquakeAdapter earthquakeAdapter;
-    public static ArrayList<Earthquake> earthquakeArrayList;
     public ParseEarthquakes parseEarthquakes;
 
     @Override
@@ -54,51 +53,36 @@ public class MainActivity extends BaseActivity {
             public boolean onQueryTextChange(String s) {
 
                 if (TextUtils.isEmpty(s)) {
+                    earthquakeAdapter.filter("");
                     listEarthquakes.clearTextFilter();
-                } else {
-                    listEarthquakes.setFilterText(s);
+                }
+                else {
+                    earthquakeAdapter.filter(s);
                 }
                 return true;
             }
         });
         return true;
     }
-    public void ToDB(ArrayList<Earthquake> earthquakes){
-        DatabaseHandler handler = new DatabaseHandler(getApplicationContext());
 
-        for (Earthquake e : earthquakes){
-            String title = e.getTitle();
-            String magnitude = e.getMagnitude();
-            String location = e.getLocation();
-            String depth = e.getDepth();
-            String description = e.getDescription();
-            String link = e.getLink();
-            String pubDate = e.getPubDate();
-            String category = e.getCategory();
-            String geoLat = e.getGeoLat();
-            String geoLong = e.getGeoLong();
-            handler.insert(title,magnitude,location,depth,description,link,pubDate,category,geoLat,geoLong);
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected: Begin");
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
         }
+        if (id == R.id.action_search) {
+            Log.d(TAG, "onOptionsItemSelected: Item selected: "+ id);
+            return true;
+        }
+
+        Log.d(TAG, "onOptionsItemSelected() returned: returned");
+        return true;
     }
-
-
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        Log.d(TAG, "onOptionsItemSelected: Begin");
-//        int id = item.getItemId();
-//
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//        if (id == R.id.action_search) {
-//            Log.d(TAG, "onOptionsItemSelected: Item selected: "+ id);
-//            return true;
-//        }
-//
-//        Log.d(TAG, "onOptionsItemSelected() returned: returned");
-//        return true;
-//    }
 
 
     private class DownloadData extends AsyncTask<String, Void, String> {

@@ -2,9 +2,6 @@ package com.niklas.gcu.moblieplatformcw;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +18,17 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     private static final String TAG = "EarthquakeAdapter";
     private final int layoutResource;
     private final  LayoutInflater layoutInflater;
-    public ArrayList<Earthquake> earthquakes;
-    public ArrayList<Earthquake> orig;
+    public List<Earthquake> earthquakes;
+    public ArrayList<Earthquake> arrayList;
 
 
-    public EarthquakeAdapter(Context context, int resource, ArrayList<Earthquake> earthquakes) {
+    public EarthquakeAdapter(Context context, int resource, List<Earthquake> earthquakes) {
         super(context, resource);
         this.layoutResource = resource;
         this.layoutInflater = LayoutInflater.from(context);
         this.earthquakes = earthquakes;
+        this.arrayList = new ArrayList<Earthquake>();
+        this.arrayList.addAll(earthquakes);
 
     }
 
@@ -83,36 +82,6 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
 
         return convertView;
     }
-    public Filter getFilter(){
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                final FilterResults oReturn = new FilterResults();
-                final ArrayList<Earthquake> results = new ArrayList<Earthquake>();
-                if (orig == null)
-                    orig = earthquakes;
-                if (constraint != null) {
-                    if (orig != null && orig.size() > 0) {
-                        for (final Earthquake g : orig) {
-                            if (g.getLocation().toUpperCase()
-                                    .contains(constraint.toString().toUpperCase()))
-                                results.add(g);
-                        }
-                    }
-                    oReturn.values = results;
-                }
-                return oReturn;
-            }
-
-            @SuppressWarnings("unchecked")
-            @Override
-            protected void publishResults(CharSequence constraint,
-                                          FilterResults results) {
-                earthquakes = (ArrayList<Earthquake>) results.values;
-                notifyDataSetChanged();
-            }
-        };
-    }
 
     private class ViewHolder{
         final TextView tvLocation, tvMagnitude, tvDate, tvDetails;
@@ -123,8 +92,23 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
             this.tvDate = v.findViewById(R.id.tvPubDate);
             this.tvDetails = v.findViewById(R.id.tvDetails);
         }
+    }
 
-
+    public void filter(String charText){
+        arrayList.addAll(earthquakes);
+        charText = charText.toUpperCase(Locale.getDefault());
+        earthquakes.clear();
+        if(charText.length()==0){
+            earthquakes.addAll(arrayList);
+        }
+        else {
+            for (Earthquake earthquake : arrayList){
+                if(earthquake.getLocation().contains(charText)){
+                    earthquakes.add(earthquake);
+                }
+            }
+        }
+        notifyDataSetChanged();
 
     }
 
