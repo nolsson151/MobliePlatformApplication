@@ -63,6 +63,23 @@ public class MainActivity extends BaseActivity {
         });
         return true;
     }
+    public void ToDB(ArrayList<Earthquake> earthquakes){
+        DatabaseHandler handler = new DatabaseHandler(getApplicationContext());
+
+        for (Earthquake e : earthquakes){
+            String title = e.getTitle();
+            String magnitude = e.getMagnitude();
+            String location = e.getLocation();
+            String depth = e.getDepth();
+            String description = e.getDescription();
+            String link = e.getLink();
+            String pubDate = e.getPubDate();
+            String category = e.getCategory();
+            String geoLat = e.getGeoLat();
+            String geoLong = e.getGeoLong();
+            handler.insert(title,magnitude,location,depth,description,link,pubDate,category,geoLat,geoLong);
+        }
+    }
 
 
 

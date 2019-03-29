@@ -24,17 +24,21 @@ class DatabaseHandler {
 
 
     }
-    public boolean insert(String title, String magnitude, String location, String link, String pubDate, String geoLat, String geoLng) {
+    public boolean insert(String title, String magnitude, String location, String depth, String description, String link, String pubDate, String category, String geoLat, String geoLong) {
         SQLiteDatabase db = this.db;
         ContentValues contentValues = new ContentValues();
-        if(eqLoc !=null) {
-            contentValues.put("Location", eqLoc);
-            contentValues.put("Magnitude", eqMagni);
-            contentValues.put("Depth", eqDepth);
+        if(title !=null) {
+            contentValues.put("Title", title);
+            contentValues.put("Location", location);
+            contentValues.put("Magnitude", magnitude);
+            contentValues.put("Depth", depth);
+            contentValues.put( "Description", description);
             contentValues.put("Link", link);
-            contentValues.put("Date", pubDate.substring(5,16));
+//            contentValues.put("Date", pubDate.substring(5,16));
+            contentValues.put("PubDate",pubDate);
+            contentValues.put("Category", category);
             contentValues.put("geoLat", geoLat);
-            contentValues.put("geoLng", geoLng);
+            contentValues.put("geoLong", geoLong);
 //            Log.e("PUBDATE ", "- Location - " + eqLoc + "\n - Date - " + pubDate.substring(5,16) + "\n - Magnitude - " + eqMagni + "\n - Depth - " + eqDepth + "\n - Link - " + link + "\n - Geo Lat - " + geoLat + "\n- Geo Lng - " + geoLng + "\n\n");
             db.insert("earthquakes", null, contentValues);
         }
