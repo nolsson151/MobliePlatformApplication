@@ -5,7 +5,9 @@
     <string name="earthquake_date">Date</string>
     <string name="earthquake_details">Details</string>
     <string name="magnitude_symbol">M %s</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_all">All</string>
+    <string name="action_Az">Sort A-z</string>
+    <string name="action_magnitude">Sort Magnitude</string>
     <string name="title_activity_search">Search Activity</string>
     <string name="title_activity_earthquake">Earthquake Activity</string>
     <string name="activity_search">Search</string>

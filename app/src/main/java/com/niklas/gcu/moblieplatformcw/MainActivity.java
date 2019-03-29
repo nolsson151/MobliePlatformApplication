@@ -23,6 +23,7 @@ public class MainActivity extends BaseActivity {
     private ListView listEarthquakes;
     private EarthquakeAdapter earthquakeAdapter;
     public ParseEarthquakes parseEarthquakes;
+    private ArrayList<Earthquake> masterList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,18 +71,27 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected: Begin");
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_All:
+                Log.d(TAG, "onOptionsItemSelected: All selected");
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, masterList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
+                break;
+            case R.id.action_A_z:
+                //stuff
+                break;
+            case R.id.action_magnitude:
+                break;
+            default:
+                Log.d(TAG, "onOptionsItemSelected: End");
         }
-        if (id == R.id.action_search) {
-            Log.d(TAG, "onOptionsItemSelected: Item selected: "+ id);
-            return true;
-        }
-
-        Log.d(TAG, "onOptionsItemSelected() returned: returned");
         return true;
+    }
+
+    public void setMasterList(ArrayList listToSet){
+        this.masterList = new ArrayList<Earthquake>();
+        masterList.addAll(listToSet);
     }
 
 
@@ -94,9 +104,7 @@ public class MainActivity extends BaseActivity {
             Log.d(TAG, "onPostExecute: parameter is " + s);
             parseEarthquakes = new ParseEarthquakes();
             parseEarthquakes.parse(s);
-
-            //Log.d(TAG, "onPostExecute: arraylist Item 0: "+parseEarthquakes.getEarthquakes().toString());
-
+            setMasterList(parseEarthquakes.getEarthquakes());
             earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, parseEarthquakes.getEarthquakes());
             listEarthquakes.setAdapter(earthquakeAdapter);
 

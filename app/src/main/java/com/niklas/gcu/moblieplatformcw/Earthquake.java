@@ -1,5 +1,7 @@
 package com.niklas.gcu.moblieplatformcw;
 
+import java.util.Comparator;
+
 public class Earthquake {
 
     private String title;
@@ -121,6 +123,22 @@ public class Earthquake {
                 "Link: " + link;
 
     }
+
+    public static Comparator<Earthquake> locationCompare = new Comparator<Earthquake>() {
+        @Override
+        public int compare(Earthquake e1, Earthquake e2) {
+            String location1 = e1.getLocation();
+            String location2 = e2.getLocation();
+            return location1.compareTo(location2);
+        }};
+
+    public static Comparator<Earthquake> magnitudeCompare = new Comparator<Earthquake>() {
+        @Override
+        public int compare(Earthquake e1, Earthquake e2) {
+            String magnitude1 = e1.getMagnitude();
+            String magnitude2 = e2.getMagnitude();
+            return magnitude1.compareTo(magnitude2);
+        }};
 
     @Override
     public String toString() {
