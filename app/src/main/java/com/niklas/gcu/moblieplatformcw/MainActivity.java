@@ -17,6 +17,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
@@ -24,6 +26,7 @@ public class MainActivity extends BaseActivity {
     private EarthquakeAdapter earthquakeAdapter;
     public ParseEarthquakes parseEarthquakes;
     private ArrayList<Earthquake> masterList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +82,18 @@ public class MainActivity extends BaseActivity {
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_A_z:
-                //stuff
+                ArrayList<Earthquake> AzList = new ArrayList<>(masterList);
+                Collections.sort(AzList, Earthquake.locationCompare);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, AzList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_magnitude:
+                ArrayList<Earthquake> magList = new ArrayList<>(masterList);
+                Collections.sort(magList, Earthquake.magnitudeCompare);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, magList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
                 break;
             default:
                 Log.d(TAG, "onOptionsItemSelected: End");
@@ -90,7 +102,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void setMasterList(ArrayList listToSet){
-        this.masterList = new ArrayList<Earthquake>();
+        this.masterList = new ArrayList<>();
         masterList.addAll(listToSet);
     }
 

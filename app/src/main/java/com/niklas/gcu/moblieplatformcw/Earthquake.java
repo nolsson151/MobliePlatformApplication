@@ -127,18 +127,19 @@ public class Earthquake {
     public static Comparator<Earthquake> locationCompare = new Comparator<Earthquake>() {
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
-            String location1 = e1.getLocation();
-            String location2 = e2.getLocation();
-            return location1.compareTo(location2);
+            String l1 = e1.getLocation();
+            String l2 = e2.getLocation();
+            return l1.compareTo(l2);
         }};
 
     public static Comparator<Earthquake> magnitudeCompare = new Comparator<Earthquake>() {
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
-            String magnitude1 = e1.getMagnitude();
-            String magnitude2 = e2.getMagnitude();
-            return magnitude1.compareTo(magnitude2);
+            String m1 = e1.getMagnitude();
+            String m2 = e2.getMagnitude();
+            return m2.compareTo(m1);
         }};
+//    public static Comparator<Earthquake> dateCompare
 
     @Override
     public String toString() {
