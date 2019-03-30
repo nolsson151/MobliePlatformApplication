@@ -8,6 +8,7 @@
     <string name="action_all">All</string>
     <string name="action_Az">Sort A-z</string>
     <string name="action_magnitude">Sort Magnitude</string>
+    <string name="action_date">Date</string>
     <string name="title_activity_search">Search Activity</string>
     <string name="title_activity_earthquake">Earthquake Activity</string>
     <string name="activity_search">Search</string>

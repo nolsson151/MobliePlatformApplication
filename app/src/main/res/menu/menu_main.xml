@@ -4,23 +4,29 @@
     tools:context="com.niklas.gcu.moblieplatformcw.MainActivity">
     <item
         android:id="@+id/action_All"
-        android:orderInCategory="100"
+        android:orderInCategory="3"
         android:title="@string/action_all"
         app:showAsAction="collapseActionView" />
     <item
         android:id="@+id/action_A-z"
-        android:orderInCategory="100"
+        android:orderInCategory="5"
         android:title="@string/action_Az"
         app:showAsAction="collapseActionView" />
     <item
         android:id="@+id/action_magnitude"
-        android:orderInCategory="100"
+        android:orderInCategory="6"
         android:title="@string/action_magnitude"
         app:showAsAction="collapseActionView" />
     <item
+        android:id="@+id/action_date"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:orderInCategory="2"
+        android:title="@string/action_date"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
-        android:orderInCategory="101"
+        android:orderInCategory="1"
         android:title="@string/activity_search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom" />
