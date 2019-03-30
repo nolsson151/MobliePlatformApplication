@@ -75,7 +75,9 @@ public class ParseEarthquakes {
                             } else if("link".equalsIgnoreCase(tagname)){
                                 earthquake.setLink(text);
                             } else if("pubDate".equalsIgnoreCase(tagname)){
-                                earthquake.setPubDate(text);
+                                StringBuilder dateBuilder = new StringBuilder(text);
+                                String date = dateBuilder.substring(5, 16);
+                                earthquake.setPubDate(date);
                             } else if("category".equalsIgnoreCase(tagname)){
                                 earthquake.setCategory(text);
                             } else if("lat".equalsIgnoreCase(tagname)){

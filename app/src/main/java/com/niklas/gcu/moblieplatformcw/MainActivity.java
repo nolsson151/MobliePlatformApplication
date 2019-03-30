@@ -22,10 +22,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
@@ -35,6 +37,7 @@ public class MainActivity extends BaseActivity {
     public ParseEarthquakes parseEarthquakes;
     private ArrayList<Earthquake> masterList;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private String searchDate;
 
 
     @Override
@@ -102,13 +105,27 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()){
             case R.id.action_date:
                 Log.d(TAG, "onOptionsItemSelected: Date selected");
+                ArrayList<Earthquake> dateList = new ArrayList<>();
                 MainActivity.this.showDatePicker(this.datePicker);
+
+                Log.d(TAG, "onOptionsItemSelected: Date given:" + searchDate);
+                for(Earthquake e : masterList){
+                    if(e.getPubDate() == searchDate){
+                        dateList.add(e);
+                    }
+                }
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, dateList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
+
+
                 break;
             case R.id.action_All:
                 Log.d(TAG, "onOptionsItemSelected: All selected");
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, masterList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
+
                 break;
             case R.id.action_A_z:
                 ArrayList<Earthquake> AzList = new ArrayList<>(masterList);
@@ -155,15 +172,9 @@ public class MainActivity extends BaseActivity {
      * @param day Chosen day
      */
     public void processDatePickerResult(int year, int month, int day) {
-        String month_string = Integer.toString(month + 1);
-        String day_string = Integer.toString(day);
-        String year_string = Integer.toString(year);
-        String dateMessage = (month_string +
-                "/" + day_string +
-                "/" + year_string);
-
-        Toast.makeText(this, "Date: " + dateMessage,
-                Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "processDatePickerResult: "+day+" "+month+" "+year);
+        String date = new GregorianCalendar(year,month, day).toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu"));
+        searchDate = date;
     }
 
 
