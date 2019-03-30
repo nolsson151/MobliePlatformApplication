@@ -103,6 +103,7 @@ public class MainActivity extends BaseActivity {
             case R.id.action_date:
                 Log.d(TAG, "onOptionsItemSelected: Date selected");
                 MainActivity.this.showDatePicker(this.datePicker);
+                break;
             case R.id.action_All:
                 Log.d(TAG, "onOptionsItemSelected: All selected");
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, masterList);
@@ -116,7 +117,7 @@ public class MainActivity extends BaseActivity {
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
-            case R.id.action_magnitude:
+            case R.id.action_magnitude: // Does not Compare correctly, views negative higher than positive.
                 ArrayList<Earthquake> magList = new ArrayList<>(masterList);
                 Collections.sort(magList, Earthquake.magnitudeCompare);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, magList);
