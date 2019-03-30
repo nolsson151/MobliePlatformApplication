@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -33,6 +34,7 @@ public class MainActivity extends BaseActivity {
     private DatePicker datePicker;
     public ParseEarthquakes parseEarthquakes;
     private ArrayList<Earthquake> masterList;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
@@ -46,8 +48,23 @@ public class MainActivity extends BaseActivity {
         DownloadData downloadData = new DownloadData();
         downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
         Log.d(TAG, "onCreate: done");
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshData(); // your code
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
 
     }
+
+    public void refreshData(){
+        DownloadData downloadData = new DownloadData();
+        downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.d(TAG, "onCreateOptionsMenu: created");
