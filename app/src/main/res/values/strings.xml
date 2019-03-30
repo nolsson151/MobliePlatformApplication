@@ -14,4 +14,5 @@
     <string name="activity_search">Search</string>
     <string name="searchable_hint">Enter location</string>
     <string name="title_activity_maps">Map</string>
+    <string name="datepicker">datePicker</string>
 </resources>

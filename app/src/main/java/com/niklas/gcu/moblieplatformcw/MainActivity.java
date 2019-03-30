@@ -1,13 +1,18 @@
 package com.niklas.gcu.moblieplatformcw;
 
+import android.app.DatePickerDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 
 import java.io.BufferedReader;
@@ -17,6 +22,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -24,6 +30,7 @@ public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     private ListView listEarthquakes;
     private EarthquakeAdapter earthquakeAdapter;
+    private DatePicker datePicker;
     public ParseEarthquakes parseEarthquakes;
     private ArrayList<Earthquake> masterList;
 
@@ -34,6 +41,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         activateToolbar(false);
         listEarthquakes = (ListView) findViewById(R.id.list_earthquakes);
+
         Log.d(TAG, "onCreate: Starting AsyncTak");
         DownloadData downloadData = new DownloadData();
         downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
@@ -75,6 +83,9 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected: Begin");
         switch (item.getItemId()){
+            case R.id.action_date:
+                Log.d(TAG, "onOptionsItemSelected: Date selected");
+                MainActivity.this.showDatePicker(this.datePicker);
             case R.id.action_All:
                 Log.d(TAG, "onOptionsItemSelected: All selected");
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, masterList);
@@ -105,6 +116,38 @@ public class MainActivity extends BaseActivity {
         this.masterList = new ArrayList<>();
         masterList.addAll(listToSet);
     }
+    /**
+     * Handles the button click to create a new date picker fragment and
+     * show it.
+     *
+     * @param view View that was clicked
+     */
+    public void showDatePicker(View view) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(),
+                getString(R.string.datepicker));
+    }
+
+    /**
+     * Process the date picker result into strings that can be displayed in
+     * a Toast.
+     *
+     * @param year Chosen year
+     * @param month Chosen month
+     * @param day Chosen day
+     */
+    public void processDatePickerResult(int year, int month, int day) {
+        String month_string = Integer.toString(month + 1);
+        String day_string = Integer.toString(day);
+        String year_string = Integer.toString(year);
+        String dateMessage = (month_string +
+                "/" + day_string +
+                "/" + year_string);
+
+        Toast.makeText(this, "Date: " + dateMessage,
+                Toast.LENGTH_SHORT).show();
+    }
+
 
 
     private class DownloadData extends AsyncTask<String, Void, String> {
