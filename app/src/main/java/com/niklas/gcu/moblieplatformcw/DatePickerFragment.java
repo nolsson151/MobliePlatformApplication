@@ -27,12 +27,9 @@ public class DatePickerFragment extends DialogFragment
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
-
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-        // Set the activity to the Main Activity.
         MainActivity activity = (MainActivity) getActivity();
-        // Invoke Main Activity's processDatePickerResult() method.
         activity.processDatePickerResult(year, month, day);
     }
 }

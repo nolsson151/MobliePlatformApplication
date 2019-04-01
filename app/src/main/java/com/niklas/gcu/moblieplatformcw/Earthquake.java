@@ -5,22 +5,22 @@ import java.util.Comparator;
 public class Earthquake {
 
     private String title;
-    private String magnitude;
+    private double magnitude;
     private String location;
     private String depth;
     private String description;
     private String link;
     private String pubDate;
     private String category;
-    private String geoLat;
-    private String geoLong;
+    private double geoLat;
+    private double geoLong;
 
     public Earthquake() {
 
     }
 
-    public Earthquake(String title, String magnitude, String location, String depth, String description, String link, String pubDate,
-                      String category, String geoLat, String geoLong) {
+    public Earthquake(String title, double magnitude, String location, String depth, String description, String link, String pubDate,
+                      String category, double geoLat, double geoLong) {
         title = this.title;
         magnitude = this.magnitude;
         location = this.location;
@@ -41,11 +41,11 @@ public class Earthquake {
         this.title = title;
     }
 
-    public String getMagnitude() {
+    public Double getMagnitude() {
         return magnitude;
     }
 
-    public void setMagnitude(String magnitude) {
+    public void setMagnitude(Double magnitude) {
         this.magnitude = magnitude;
     }
 
@@ -98,19 +98,19 @@ public class Earthquake {
         this.category = category;
     }
 
-    public String getGeoLat() {
+    public double getGeoLat() {
         return geoLat;
     }
 
-    public void setGeoLat(String geoLat) {
+    public void setGeoLat(double geoLat) {
         this.geoLat = geoLat;
     }
 
-    public String getGeoLong() {
+    public double getGeoLong() {
         return geoLong;
     }
 
-    public void setGeoLong(String geoLong) {
+    public void setGeoLong(double geoLong) {
         this.geoLong = geoLong;
     }
 
@@ -124,7 +124,7 @@ public class Earthquake {
 
     }
 
-    public static Comparator<Earthquake> locationCompare = new Comparator<Earthquake>() {
+    public static Comparator<Earthquake> locationCompare_Az = new Comparator<Earthquake>() {
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
             String l1 = e1.getLocation();
@@ -132,14 +132,25 @@ public class Earthquake {
             return l1.compareTo(l2);
         }};
 
-    public static Comparator<Earthquake> magnitudeCompare = new Comparator<Earthquake>() {
+    public static Comparator<Earthquake> locationCompare_Za = new Comparator<Earthquake>() {
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
-            String m1 = e1.getMagnitude();
-            String m2 = e2.getMagnitude();
+            String l1 = e1.getLocation();
+            String l2 = e2.getLocation();
+            return l2.compareTo(l1);
+        }};
+
+
+    public static Comparator<Earthquake> magnitudeCompare_HighLow = new Comparator<Earthquake>() {
+        @Override
+        public int compare(Earthquake e1, Earthquake e2) {
+            Double m1 = e1.getMagnitude();
+            Double m2 = e2.getMagnitude();
             return m2.compareTo(m1);
         }};
-//    public static Comparator<Earthquake> dateCompare
+
+
+
 
     @Override
     public String toString() {

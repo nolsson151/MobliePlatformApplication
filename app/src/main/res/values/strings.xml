@@ -8,6 +8,11 @@
     <string name="action_all">All</string>
     <string name="action_Az">Sort A-z</string>
     <string name="action_magnitude">Sort Magnitude</string>
+    <string name="action_coordinates">Sort Position</string>
+    <string name="action_north">Most Northerly</string>
+    <string name="action_east">Most Easterly</string>
+    <string name="action_south">Most Southerly</string>
+    <string name="action_west">Mostly Westerly</string>
     <string name="action_date">Date</string>
     <string name="title_activity_search">Search Activity</string>
     <string name="title_activity_earthquake">Earthquake Activity</string>

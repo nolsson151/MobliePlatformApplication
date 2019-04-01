@@ -18,6 +18,28 @@
         android:title="@string/action_magnitude"
         app:showAsAction="collapseActionView" />
     <item
+        android:id="@+id/action_coordinates"
+        android:orderInCategory="7"
+        android:title="@string/action_coordinates"
+        app:showAsAction="collapseActionView">
+        <menu>
+            <group android:id="@+id/group2">
+                <item
+                    android:id="@+id/action_north"
+                    android:title="@string/action_north" />
+                <item
+                    android:id="@+id/action_east"
+                    android:title="@string/action_east" />
+                <item
+                    android:id="@+id/action_south"
+                    android:title="@string/action_south" />
+                <item
+                    android:id="@+id/action_west"
+                    android:title="@string/action_west" />
+            </group>
+        </menu>
+    </item>
+    <item
         android:id="@+id/action_date"
         android:icon="@android:drawable/ic_menu_my_calendar"
         android:orderInCategory="2"

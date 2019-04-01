@@ -67,7 +67,7 @@ public class ParseEarthquakes {
                                 if(depth.length() <= 2) {
                                     depth = "0 km";
                                 }
-                                String magnitude = magBuilder.substring(12);
+                                Double magnitude = Double.parseDouble(magBuilder.substring(12));
                                 earthquake.setLocation(location);
                                 earthquake.setDepth(depth);
                                 earthquake.setMagnitude(magnitude);
@@ -81,9 +81,11 @@ public class ParseEarthquakes {
                             } else if("category".equalsIgnoreCase(tagname)){
                                 earthquake.setCategory(text);
                             } else if("lat".equalsIgnoreCase(tagname)){
-                                earthquake.setGeoLat(text);
+                                double geoLat = Double.parseDouble(text);
+                                earthquake.setGeoLat(geoLat);
                             } else if("long".equalsIgnoreCase(tagname)){
-                                earthquake.setGeoLong(text);
+                                double geoLong = Double.parseDouble(text);
+                                earthquake.setGeoLong(geoLong);
                             }
                         }
                         break;

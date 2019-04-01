@@ -1,6 +1,5 @@
 package com.niklas.gcu.moblieplatformcw;
 
-import android.app.DatePickerDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 
 import java.io.BufferedReader;
@@ -24,8 +22,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 
@@ -63,6 +59,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void refreshData(){
+        masterList.clear();
         DownloadData downloadData = new DownloadData();
         downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
     }
@@ -96,8 +93,6 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected: Begin");
@@ -116,7 +111,7 @@ public class MainActivity extends BaseActivity {
 
             case R.id.action_A_z:
                 ArrayList<Earthquake> AzList = new ArrayList<>(masterList);
-                Collections.sort(AzList, Earthquake.locationCompare);
+                Collections.sort(AzList, Earthquake.locationCompare_Az);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, AzList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
@@ -124,7 +119,7 @@ public class MainActivity extends BaseActivity {
 
             case R.id.action_magnitude: // Does not Compare correctly, views negative higher than positive.
                 ArrayList<Earthquake> magList = new ArrayList<>(masterList);
-                Collections.sort(magList, Earthquake.magnitudeCompare);
+                Collections.sort(magList, Earthquake.magnitudeCompare_HighLow);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, magList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
@@ -140,26 +135,13 @@ public class MainActivity extends BaseActivity {
         this.masterList = new ArrayList<>();
         masterList.addAll(listToSet);
     }
-    /**
-     * Handles the button click to create a new date picker fragment and
-     * show it.
-     *
-     * @param view View that was clicked
-     */
+
     public void showDatePicker(View view) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(),
                 getString(R.string.datepicker));
     }
 
-    /**
-     * Process the date picker result into strings that can be displayed in
-     * a Toast.
-     *
-     * @param year Chosen year
-     * @param month Chosen month
-     * @param day Chosen day
-     */
     public void processDatePickerResult(int year, int month, int day) {
         Log.d(TAG, "processDatePickerResult: "+day+" "+month+" "+year);
         ArrayList<Earthquake> dateList = new ArrayList<>();
@@ -173,8 +155,6 @@ public class MainActivity extends BaseActivity {
         listEarthquakes.setAdapter(earthquakeAdapter);
         earthquakeAdapter.notifyDataSetChanged();
     }
-
-
 
     private class DownloadData extends AsyncTask<String, Void, String> {
         private static final String TAG = "DownloadXML";

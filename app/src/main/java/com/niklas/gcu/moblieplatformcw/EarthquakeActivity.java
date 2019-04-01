@@ -19,8 +19,8 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
     private MapView mapView;
     private GoogleMap gmap;
-    private String geoLat;
-    private String geoLong;
+    private double geoLat;
+    private double geoLong;
 
 
     @Override
@@ -37,15 +37,15 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
 
         Bundle bundle = getIntent().getExtras();
         String location = bundle.getString("location");
-        String magnitude = bundle.getString("magnitude");
+        Double magnitude = bundle.getDouble("magnitude");
         String pubDate = bundle.getString("pubDate");
         String details = bundle.getString("details");
-        geoLat = bundle.getString("geoLat");
-        geoLong = bundle.getString("geoLong");
+        geoLat = bundle.getDouble("geoLat");
+        geoLong = bundle.getDouble("geoLong");
         Log.d(TAG, "onCreate: strings pulled though");
 
         tvLocation.setText(location);
-        tvMagnitude.setText(resources.getString(R.string.magnitude_symbol, magnitude));
+        tvMagnitude.setText(resources.getString(R.string.magnitude_symbol, magnitude.toString()));
         tvPubDate.setText(pubDate);
         TvDetails.setText(details);
 
@@ -102,7 +102,8 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
         gmap = googleMap;
         gmap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_earthquake));
         gmap.setMinZoomPreference(6);
-        LatLng position = makeLatLng(geoLat,geoLong);
+        LatLng position = new LatLng(geoLat,geoLong);
+
         gmap.moveCamera(CameraUpdateFactory.newLatLng(position));
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(position);
