@@ -28,11 +28,11 @@
                     android:id="@+id/action_north"
                     android:title="@string/action_north" />
                 <item
-                    android:id="@+id/action_east"
-                    android:title="@string/action_east" />
-                <item
                     android:id="@+id/action_south"
                     android:title="@string/action_south" />
+                <item
+                    android:id="@+id/action_east"
+                    android:title="@string/action_east" />
                 <item
                     android:id="@+id/action_west"
                     android:title="@string/action_west" />

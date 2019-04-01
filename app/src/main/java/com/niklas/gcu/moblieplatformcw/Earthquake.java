@@ -149,6 +149,35 @@ public class Earthquake {
             return m2.compareTo(m1);
         }};
 
+    public static Comparator<Earthquake> positionCompare_North = new Comparator<Earthquake>() {
+        @Override
+        public int compare(Earthquake e1, Earthquake e2) {
+            Double p1 = e1.getGeoLong();
+            Double p2 = e2.getGeoLong();
+            return p2.compareTo(p1);
+        }};
+    public static Comparator<Earthquake> positionCompare_South = new Comparator<Earthquake>() {
+        @Override
+        public int compare(Earthquake e1, Earthquake e2) {
+            Double p1 = e1.getGeoLong();
+            Double p2 = e2.getGeoLong();
+            return p1.compareTo(p2);
+        }};
+    public static Comparator<Earthquake> positionCompare_East = new Comparator<Earthquake>() {
+        @Override
+        public int compare(Earthquake e1, Earthquake e2) {
+            Double p1 = e1.getGeoLat();
+            Double p2 = e2.getGeoLat();
+            return p2.compareTo(p1);
+        }};
+    public static Comparator<Earthquake> positionCompare_West = new Comparator<Earthquake>() {
+        @Override
+        public int compare(Earthquake e1, Earthquake e2) {
+            Double p1 = e1.getGeoLat();
+            Double p2 = e2.getGeoLat();
+            return p1.compareTo(p2);
+        }};
+
 
 
 

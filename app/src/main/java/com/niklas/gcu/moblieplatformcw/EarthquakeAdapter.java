@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
@@ -29,7 +28,6 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         this.earthquakes = earthquakes;
         this.arrayList = new ArrayList<Earthquake>();
         this.arrayList.addAll(earthquakes);
-
     }
 
     @Override
@@ -76,7 +74,6 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
                 intent.putExtra("geoLong", earthquakes.get(position).getGeoLong());
                 intent.putExtra("details", earthquakes.get(position).getDetails());
                 view.getContext().startActivity(intent);
-
             }
         });
 
@@ -110,20 +107,4 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         notifyDataSetChanged();
 
     }
-
-//    public void filter(String charText) {
-//        arraylist.addAll(MainActivity.earthquakeArrayList);
-//        charText = charText.toLowerCase(Locale.getDefault());
-//        earthquakes.clear();
-//        if (charText.length() == 0) {
-//            earthquakes.addAll(arraylist);
-//        } else {
-//            for (Earthquake e : arraylist) {
-//                if (e.getLocation().toLowerCase(Locale.getDefault()).contains(charText)) {
-//                    earthquakes.add(e);
-//                }
-//            }
-//        }
-//        notifyDataSetChanged();
-//    }
 }

@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SearchView;
-
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -54,8 +54,6 @@ public class MainActivity extends BaseActivity {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
-
-
     }
 
     public void refreshData(){
@@ -99,7 +97,7 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()){
             case R.id.action_date:
                 Log.d(TAG, "onOptionsItemSelected: Date selected");
-                MainActivity.this.showDatePicker(this.datePicker);
+                showDatePicker(this.datePicker);
                 break;
 
             case R.id.action_All:
@@ -110,6 +108,7 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.action_A_z:
+                Log.d(TAG, "onOptionsItemSelected: Sort A-z selected");
                 ArrayList<Earthquake> AzList = new ArrayList<>(masterList);
                 Collections.sort(AzList, Earthquake.locationCompare_Az);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, AzList);
@@ -117,10 +116,44 @@ public class MainActivity extends BaseActivity {
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
 
-            case R.id.action_magnitude: // Does not Compare correctly, views negative higher than positive.
+            case R.id.action_magnitude:
+                Log.d(TAG, "onOptionsItemSelected: Sort Magnitude selected");
                 ArrayList<Earthquake> magList = new ArrayList<>(masterList);
                 Collections.sort(magList, Earthquake.magnitudeCompare_HighLow);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, magList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
+                break;
+
+            case R.id.action_north:
+                Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
+                ArrayList<Earthquake> northList = new ArrayList<>(masterList);
+                Collections.sort(northList, Earthquake.positionCompare_North);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, northList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
+                break;
+            case R.id.action_south:
+                Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
+                ArrayList<Earthquake> southList = new ArrayList<>(masterList);
+                Collections.sort(southList, Earthquake.positionCompare_South);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, southList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
+                break;
+            case R.id.action_east:
+                Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
+                ArrayList<Earthquake> eastList = new ArrayList<>(masterList);
+                Collections.sort(eastList, Earthquake.positionCompare_East);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, eastList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
+                break;
+            case R.id.action_west:
+                Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
+                ArrayList<Earthquake> westList = new ArrayList<>(masterList);
+                Collections.sort(westList, Earthquake.positionCompare_West);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, westList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
@@ -151,9 +184,15 @@ public class MainActivity extends BaseActivity {
                 dateList.add(e);
             }
         }
-        earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, dateList);
-        listEarthquakes.setAdapter(earthquakeAdapter);
-        earthquakeAdapter.notifyDataSetChanged();
+        if(dateList.size() == 0){
+            Toast.makeText(this, "No earthquakes found for: "+ date, Toast.LENGTH_SHORT).show();
+        }
+        else{
+            earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, dateList);
+            listEarthquakes.setAdapter(earthquakeAdapter);
+            earthquakeAdapter.notifyDataSetChanged();
+        }
+
     }
 
     private class DownloadData extends AsyncTask<String, Void, String> {
