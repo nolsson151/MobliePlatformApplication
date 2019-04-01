@@ -37,7 +37,6 @@ public class MainActivity extends BaseActivity {
     public ParseEarthquakes parseEarthquakes;
     private ArrayList<Earthquake> masterList;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String searchDate;
 
 
     @Override
@@ -105,28 +104,16 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()){
             case R.id.action_date:
                 Log.d(TAG, "onOptionsItemSelected: Date selected");
-                ArrayList<Earthquake> dateList = new ArrayList<>();
                 MainActivity.this.showDatePicker(this.datePicker);
-
-                Log.d(TAG, "onOptionsItemSelected: Date given:" + searchDate);
-                for(Earthquake e : masterList){
-                    if(e.getPubDate() == searchDate){
-                        dateList.add(e);
-                    }
-                }
-                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, dateList);
-                listEarthquakes.setAdapter(earthquakeAdapter);
-                earthquakeAdapter.notifyDataSetChanged();
-
-
                 break;
+
             case R.id.action_All:
                 Log.d(TAG, "onOptionsItemSelected: All selected");
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, masterList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
-
                 break;
+
             case R.id.action_A_z:
                 ArrayList<Earthquake> AzList = new ArrayList<>(masterList);
                 Collections.sort(AzList, Earthquake.locationCompare);
@@ -134,6 +121,7 @@ public class MainActivity extends BaseActivity {
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
+
             case R.id.action_magnitude: // Does not Compare correctly, views negative higher than positive.
                 ArrayList<Earthquake> magList = new ArrayList<>(masterList);
                 Collections.sort(magList, Earthquake.magnitudeCompare);
@@ -141,6 +129,7 @@ public class MainActivity extends BaseActivity {
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
+
             default:
                 Log.d(TAG, "onOptionsItemSelected: End");
         }
@@ -173,8 +162,17 @@ public class MainActivity extends BaseActivity {
      */
     public void processDatePickerResult(int year, int month, int day) {
         Log.d(TAG, "processDatePickerResult: "+day+" "+month+" "+year);
+        ArrayList<Earthquake> dateList = new ArrayList<>();
         String date = new GregorianCalendar(year,month, day).toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu"));
-        searchDate = date;
+        String searchDate = date;
+        for(Earthquake e : masterList){
+            if(e.getPubDate() == searchDate){
+                dateList.add(e);
+            }
+        }
+        earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, dateList);
+        listEarthquakes.setAdapter(earthquakeAdapter);
+        earthquakeAdapter.notifyDataSetChanged();
     }
 
 
