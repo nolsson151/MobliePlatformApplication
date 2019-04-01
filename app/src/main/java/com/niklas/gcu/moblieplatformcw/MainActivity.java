@@ -32,6 +32,7 @@ public class MainActivity extends BaseActivity {
     private DatePicker datePicker;
     public ParseEarthquakes parseEarthquakes;
     private ArrayList<Earthquake> masterList;
+    private ArrayList<Earthquake> sortedList;
     private SwipeRefreshLayout swipeRefreshLayout;
 
 
@@ -109,51 +110,51 @@ public class MainActivity extends BaseActivity {
 
             case R.id.action_A_z:
                 Log.d(TAG, "onOptionsItemSelected: Sort A-z selected");
-                ArrayList<Earthquake> AzList = new ArrayList<>(masterList);
-                Collections.sort(AzList, Earthquake.locationCompare_Az);
-                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, AzList);
+                this.sortedList = new ArrayList<>(masterList);
+                Collections.sort(sortedList, Earthquake.locationCompare_Az);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
 
             case R.id.action_magnitude:
                 Log.d(TAG, "onOptionsItemSelected: Sort Magnitude selected");
-                ArrayList<Earthquake> magList = new ArrayList<>(masterList);
-                Collections.sort(magList, Earthquake.magnitudeCompare_HighLow);
-                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, magList);
+                this.sortedList = new ArrayList<>(masterList);
+                Collections.sort(sortedList, Earthquake.magnitudeCompare_HighLow);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
 
             case R.id.action_north:
                 Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
-                ArrayList<Earthquake> northList = new ArrayList<>(masterList);
-                Collections.sort(northList, Earthquake.positionCompare_North);
-                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, northList);
+                this.sortedList = new ArrayList<>(masterList);
+                Collections.sort(sortedList, Earthquake.positionCompare_North);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_south:
                 Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
-                ArrayList<Earthquake> southList = new ArrayList<>(masterList);
-                Collections.sort(southList, Earthquake.positionCompare_South);
-                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, southList);
+                sortedList = new ArrayList<>(masterList);
+                Collections.sort(sortedList, Earthquake.positionCompare_South);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_east:
                 Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
-                ArrayList<Earthquake> eastList = new ArrayList<>(masterList);
-                Collections.sort(eastList, Earthquake.positionCompare_East);
-                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, eastList);
+                sortedList = new ArrayList<>(masterList);
+                Collections.sort(sortedList, Earthquake.positionCompare_East);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_west:
                 Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
-                ArrayList<Earthquake> westList = new ArrayList<>(masterList);
-                Collections.sort(westList, Earthquake.positionCompare_West);
-                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, westList);
+                sortedList = new ArrayList<>(masterList);
+                Collections.sort(sortedList, Earthquake.positionCompare_West);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
@@ -177,18 +178,18 @@ public class MainActivity extends BaseActivity {
 
     public void processDatePickerResult(int year, int month, int day) {
         Log.d(TAG, "processDatePickerResult: "+day+" "+month+" "+year);
-        ArrayList<Earthquake> dateList = new ArrayList<>();
+        sortedList = new ArrayList<>();
         String date = new GregorianCalendar(year,month, day).toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu"));
         for(Earthquake e : masterList){
             if(e.getPubDate().equals(date)){
-                dateList.add(e);
+                sortedList.add(e);
             }
         }
-        if(dateList.size() == 0){
+        if(sortedList.size() == 0){
             Toast.makeText(this, "No earthquakes found for: "+ date, Toast.LENGTH_SHORT).show();
         }
         else{
-            earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, dateList);
+            earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
             listEarthquakes.setAdapter(earthquakeAdapter);
             earthquakeAdapter.notifyDataSetChanged();
         }
