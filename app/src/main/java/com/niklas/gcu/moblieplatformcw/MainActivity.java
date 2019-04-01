@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity {
     private ArrayList<Earthquake> masterList;
     private ArrayList<Earthquake> sortedList;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private String urlString = "http://quakes.bgs.ac.uk/feeds/MhSeismology.xml";
 
 
     @Override
@@ -42,10 +43,9 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         activateToolbar(false);
         listEarthquakes = (ListView) findViewById(R.id.list_earthquakes);
-
         Log.d(TAG, "onCreate: Starting AsyncTak");
         DownloadData downloadData = new DownloadData();
-        downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
+        downloadData.execute(urlString);
         Log.d(TAG, "onCreate: done");
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -58,9 +58,20 @@ public class MainActivity extends BaseActivity {
     }
 
     public void refreshData(){
-        masterList.clear();
-        DownloadData downloadData = new DownloadData();
-        downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
+
+        if(masterList == null){
+            DownloadData downloadData = new DownloadData();
+            downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
+        }else if(masterList.size() == 0){
+            DownloadData downloadData = new DownloadData();
+            downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
+        }
+        else {
+            masterList.clear();
+            DownloadData downloadData = new DownloadData();
+            downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
+        }
+
     }
 
     @Override
@@ -203,13 +214,16 @@ public class MainActivity extends BaseActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Log.d(TAG, "onPostExecute: parameter is " + s);
-            parseEarthquakes = new ParseEarthquakes();
-            parseEarthquakes.parse(s);
-            setMasterList(parseEarthquakes.getEarthquakes());
-            earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, parseEarthquakes.getEarthquakes());
-            listEarthquakes.setAdapter(earthquakeAdapter);
-
-
+            if (s == null){
+                Toast.makeText(MainActivity.this, "Whoops, there was a connection error. Please check your connection", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                parseEarthquakes = new ParseEarthquakes();
+                parseEarthquakes.parse(s);
+                setMasterList(parseEarthquakes.getEarthquakes());
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, parseEarthquakes.getEarthquakes());
+                listEarthquakes.setAdapter(earthquakeAdapter);
+            }
         }
 
         @Override
@@ -247,6 +261,7 @@ public class MainActivity extends BaseActivity {
                 return xmlResult.toString();
             } catch (MalformedURLException e) {
                 Log.e(TAG, "downloadXML: Invalid URL " + e.getMessage());
+
             } catch (IOException e) {
                 Log.e(TAG, "downloadXML: IO exception reading data " + e.getMessage());
             }

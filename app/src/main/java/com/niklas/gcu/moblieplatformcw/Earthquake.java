@@ -169,7 +169,7 @@ public class Earthquake {
             Double p1 = e1.getGeoLong();
             Double p2 = e2.getGeoLong();
             return p2.compareTo(p1);
-        }};
+    }};
     public static Comparator<Earthquake> positionCompare_West = new Comparator<Earthquake>() {
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
