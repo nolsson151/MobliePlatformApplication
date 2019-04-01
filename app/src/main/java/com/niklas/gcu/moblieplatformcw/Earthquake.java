@@ -7,7 +7,7 @@ public class Earthquake {
     private String title;
     private double magnitude;
     private String location;
-    private String depth;
+    private int depth;
     private String description;
     private String link;
     private String pubDate;
@@ -19,7 +19,7 @@ public class Earthquake {
 
     }
 
-    public Earthquake(String title, double magnitude, String location, String depth, String description, String link, String pubDate,
+    public Earthquake(String title, double magnitude, String location, int depth, String description, String link, String pubDate,
                       String category, double geoLat, double geoLong) {
         title = this.title;
         magnitude = this.magnitude;
@@ -57,11 +57,11 @@ public class Earthquake {
         this.location = location;
     }
 
-    public String getDepth() {
+    public int getDepth() {
         return depth;
     }
 
-    public void setDepth(String depth) {
+    public void setDepth(int depth) {
         this.depth = depth;
     }
 
@@ -117,7 +117,7 @@ public class Earthquake {
 
     public String getDetails() {
         return "Magnitude: " + magnitude + '\n' +
-                "Depth: " + depth + '\n' +
+                "Depth: " + depth + " km" + '\n' +
                 "PubDate: " + pubDate + '\n' +
                 "Coordinates: " + geoLat + ", " + geoLong + '\n' +
                 "Link: " + link;
@@ -132,14 +132,6 @@ public class Earthquake {
             return l1.compareTo(l2);
         }};
 
-    public static Comparator<Earthquake> locationCompare_Za = new Comparator<Earthquake>() {
-        @Override
-        public int compare(Earthquake e1, Earthquake e2) {
-            String l1 = e1.getLocation();
-            String l2 = e2.getLocation();
-            return l2.compareTo(l1);
-        }};
-
 
     public static Comparator<Earthquake> magnitudeCompare_HighLow = new Comparator<Earthquake>() {
         @Override
@@ -147,6 +139,14 @@ public class Earthquake {
             Double m1 = e1.getMagnitude();
             Double m2 = e2.getMagnitude();
             return m2.compareTo(m1);
+        }};
+
+    public static Comparator<Earthquake> depthCompare = new Comparator<Earthquake>() {
+        @Override
+        public int compare(Earthquake e1, Earthquake e2) {
+            int d1 = e1.getDepth();
+            int d2 = e2.getDepth();
+            return d2 - d1;
         }};
 
     public static Comparator<Earthquake> positionCompare_North = new Comparator<Earthquake>() {

@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.niklas.gcu.moblieplatformcw.MainActivity">
     <item
-        android:id="@+id/action_All"
+        android:id="@+id/action_recent"
         android:orderInCategory="3"
-        android:title="@string/action_all"
+        android:title="@string/action_recent"
         app:showAsAction="collapseActionView" />
     <item
         android:id="@+id/action_A-z"
@@ -18,8 +18,13 @@
         android:title="@string/action_magnitude"
         app:showAsAction="collapseActionView" />
     <item
-        android:id="@+id/action_coordinates"
+        android:id="@+id/action_depth"
         android:orderInCategory="7"
+        android:title="@string/action_depth"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/action_coordinates"
+        android:orderInCategory="8"
         android:title="@string/action_coordinates"
         app:showAsAction="collapseActionView">
         <menu>

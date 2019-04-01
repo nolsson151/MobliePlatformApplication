@@ -112,8 +112,8 @@ public class MainActivity extends BaseActivity {
                 showDatePicker(this.datePicker);
                 break;
 
-            case R.id.action_All:
-                Log.d(TAG, "onOptionsItemSelected: All selected");
+            case R.id.action_recent:
+                Log.d(TAG, "onOptionsItemSelected: Most Recent selected");
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, masterList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
@@ -132,6 +132,15 @@ public class MainActivity extends BaseActivity {
                 Log.d(TAG, "onOptionsItemSelected: Sort Magnitude selected");
                 this.sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.magnitudeCompare_HighLow);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
+                break;
+
+            case R.id.action_depth:
+                Log.d(TAG, "onOptionsItemSelected: Sort Depth selected");
+                this.sortedList = new ArrayList<>(masterList);
+                Collections.sort(sortedList, Earthquake.depthCompare);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();

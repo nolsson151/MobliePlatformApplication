@@ -6,10 +6,11 @@
     <string name="earthquake_date">Date</string>
     <string name="earthquake_details">Details</string>
     <string name="magnitude_symbol">M %s</string>
-    <string name="action_all">All</string>
+    <string name="action_recent">Most Recent</string>
     <string name="action_Az">Sort A-z</string>
     <string name="action_magnitude">Sort Magnitude</string>
-    <string name="action_coordinates">Sort Position</string>
+    <string name="action_depth">Sort Depth</string>
+    <string name="action_coordinates">Sort Coordinates</string>
     <string name="action_north">Most Northerly</string>
     <string name="action_east">Most Easterly</string>
     <string name="action_south">Most Southerly</string>

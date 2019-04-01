@@ -63,10 +63,7 @@ public class ParseEarthquakes {
                                 StringBuilder depthBuilder = new StringBuilder(strings[3]);
                                 StringBuilder magBuilder = new StringBuilder(strings[4]);
                                 String location = locationBuilder.substring(11, locationBuilder.length()-1);
-                                String depth = depthBuilder.substring(8, depthBuilder.length()-1);
-                                if(depth.length() <= 2) {
-                                    depth = "0 km";
-                                }
+                                int depth = Integer.parseInt(depthBuilder.substring(8, depthBuilder.length()-4));
                                 Double magnitude = Double.parseDouble(magBuilder.substring(12));
                                 earthquake.setLocation(location);
                                 earthquake.setDepth(depth);
