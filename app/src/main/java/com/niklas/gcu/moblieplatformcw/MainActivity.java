@@ -164,9 +164,8 @@ public class MainActivity extends BaseActivity {
         Log.d(TAG, "processDatePickerResult: "+day+" "+month+" "+year);
         ArrayList<Earthquake> dateList = new ArrayList<>();
         String date = new GregorianCalendar(year,month, day).toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu"));
-        String searchDate = date;
         for(Earthquake e : masterList){
-            if(e.getPubDate() == searchDate){
+            if(e.getPubDate().equals(date)){
                 dateList.add(e);
             }
         }
