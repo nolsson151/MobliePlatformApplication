@@ -34,7 +34,6 @@ public class MainActivity extends BaseActivity {
     private ArrayList<Earthquake> masterList;
     private ArrayList<Earthquake> sortedList;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String urlString = "http://quakes.bgs.ac.uk/feeds/MhSeismology.xml";
 
 
     @Override
@@ -45,7 +44,7 @@ public class MainActivity extends BaseActivity {
         listEarthquakes = (ListView) findViewById(R.id.list_earthquakes);
         Log.d(TAG, "onCreate: Starting AsyncTak");
         DownloadData downloadData = new DownloadData();
-        downloadData.execute(urlString);
+        downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
         Log.d(TAG, "onCreate: done");
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

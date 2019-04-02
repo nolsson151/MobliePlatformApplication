@@ -1,10 +1,13 @@
 package com.niklas.gcu.moblieplatformcw;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,6 +32,9 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_earthquake);
         Log.d(TAG, "onCreate: started");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         TextView tvLocation = findViewById(R.id.tvLocation);
         TextView tvMagnitude = findViewById(R.id.tvMagnitude);
         TextView tvPubDate = findViewById(R.id.tvPubDate);
@@ -58,6 +64,13 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(mapViewBundle);
         mapView.getMapAsync(this);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
 
     }
     @Override
