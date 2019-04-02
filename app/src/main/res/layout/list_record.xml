@@ -34,8 +34,9 @@
     <TextView
         android:id="@+id/tvPubDate"
         android:layout_width="0dp"
-        android:layout_height="27dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:textAlignment="textEnd"
         android:textSize="14sp"
@@ -44,6 +45,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMagnitude"
         tools:text="@string/earthquake_date" />
+
+    <TextView
+        android:id="@+id/tvDepth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPubDate"
+        tools:text="@string/earthquake_depth" />
+
+    <TextView
+        android:id="@+id/tvCoordinates"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDepth"
+        tools:text="@string/earthquake_coordinates" />
 
     <!--<TextView-->
         <!--android:id="@+id/tvDetails"-->

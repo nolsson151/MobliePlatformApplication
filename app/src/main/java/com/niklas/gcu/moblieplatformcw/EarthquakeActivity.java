@@ -38,22 +38,29 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
         TextView tvLocation = findViewById(R.id.tvLocation);
         TextView tvMagnitude = findViewById(R.id.tvMagnitude);
         TextView tvPubDate = findViewById(R.id.tvPubDate);
-        TextView TvDetails = findViewById(R.id.tvDetails);
+        TextView tvDepth = findViewById(R.id.tvDepth);
+        TextView tvCoordinates= findViewById(R.id.tvCoordinates);
+        TextView tvLink = findViewById(R.id.tvLink);
+//        TextView TvDetails = findViewById(R.id.tvDetails);
         Resources resources = getResources();
 
         Bundle bundle = getIntent().getExtras();
         String location = bundle.getString("location");
         Double magnitude = bundle.getDouble("magnitude");
         String pubDate = bundle.getString("pubDate");
-        String details = bundle.getString("details");
+        Integer depth = bundle.getInt("depth", 0);
+        String link = bundle.getString("link");
         geoLat = bundle.getDouble("geoLat");
         geoLong = bundle.getDouble("geoLong");
         Log.d(TAG, "onCreate: strings pulled though");
 
         tvLocation.setText(location);
-        tvMagnitude.setText(resources.getString(R.string.magnitude_symbol, magnitude.toString()));
+        tvMagnitude.setText(String.format("M %s", magnitude));
         tvPubDate.setText(pubDate);
-        TvDetails.setText(details);
+        tvDepth.setText(String.format("Depth: %s km", depth));
+        tvCoordinates.setText(String.format("Coordinates: %s, %s", geoLat, geoLong));
+        tvLink.setText(String.format("Link: %s", link));
+//        TvDetails.setText(details);
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
