@@ -1,24 +1,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     tools:context="com.niklas.gcu.moblieplatformcw.MainActivity">
     <item
         android:id="@+id/action_search"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@mipmap/ic_search"
         android:orderInCategory="1"
         android:title="@string/activity_search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_date"
-        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:icon="@mipmap/ic_calendar"
         android:orderInCategory="2"
         android:title="@string/action_date"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_sort"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:drawable="@android:color/white"
+        android:icon="@mipmap/ic_sort"
         android:orderInCategory="3"
         android:title="@string/action_sort"
         app:showAsAction="ifRoom">
