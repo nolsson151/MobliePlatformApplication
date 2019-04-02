@@ -198,7 +198,7 @@ public class MainActivity extends BaseActivity {
     public void processDatePickerResult(int year, int month, int day) {
         Log.d(TAG, "processDatePickerResult: "+day+" "+month+" "+year);
         sortedList = new ArrayList<>();
-        String date = new GregorianCalendar(year,month, day).toZonedDateTime().format(DateTimeFormatter.ofPattern("d MMM uuuu"));
+        String date = new GregorianCalendar(year,month, day).toZonedDateTime().format(DateTimeFormatter.ofPattern("dd MMM uuuu"));
         for(Earthquake e : masterList){
             if(e.getPubDate().equals(date)){
                 sortedList.add(e);

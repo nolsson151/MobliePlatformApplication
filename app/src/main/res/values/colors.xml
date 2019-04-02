@@ -6,5 +6,11 @@
     <color name="secondary_text">#b0b4ba</color>
     <color name="iconColor">#ffffff</color>
     <color name="black">#000000</color>
-
+    <color name="maglevel1">#A7DCDA</color>
+    <color name="maglevel2">#89D7AF</color>
+    <color name="maglevel3">#6DD26E</color>
+    <color name="maglevel4">#8CCD52</color>
+    <color name="maglevel5">#C0C838</color>
+    <color name="maglevel6">#C37D20</color>
+    <color name="maglevel7">#BE1A09</color>
 </resources>

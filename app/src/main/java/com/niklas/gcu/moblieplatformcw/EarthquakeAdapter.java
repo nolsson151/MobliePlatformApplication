@@ -2,6 +2,8 @@ package com.niklas.gcu.moblieplatformcw;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     public ArrayList<Earthquake> arrayList;
 
 
+
     public EarthquakeAdapter(Context context, int resource, List<Earthquake> earthquakes) {
         super(context, resource);
         this.layoutResource = resource;
@@ -28,6 +31,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         this.earthquakes = earthquakes;
         this.arrayList = new ArrayList<Earthquake>();
         this.arrayList.addAll(earthquakes);
+
     }
 
     @Override
@@ -60,7 +64,10 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         viewHolder.tvDepth.setText(String.format("Depth: %s km", currentEarthquake.getDepth()));
         viewHolder.tvCoordinates.setText(String.format("Coordinates: %s, %s", currentEarthquake.getGeoLat(), currentEarthquake.getGeoLong()));
 
-//        viewHolder.tvDetails.setText(currentEarthquake.getDetails());
+//        double color = currentEarthquake.getMagnitude();
+//        if(color <=0.9){
+//            viewHolder.tvMagnitude.setBackgroundColor(getContext().getResources().getColor(R.color.maglevel1));
+//        }
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +99,6 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
             this.tvDate = v.findViewById(R.id.tvPubDate);
             this.tvDepth = v.findViewById(R.id.tvDepth);
             this.tvCoordinates = v.findViewById(R.id.tvCoordinates);
-//            this.tvDetails = v.findViewById(R.id.tvDetails);
         }
     }
 
@@ -112,4 +118,5 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         notifyDataSetChanged();
 
     }
+
 }

@@ -41,7 +41,6 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
         TextView tvDepth = findViewById(R.id.tvDepth);
         TextView tvCoordinates= findViewById(R.id.tvCoordinates);
         TextView tvLink = findViewById(R.id.tvLink);
-//        TextView TvDetails = findViewById(R.id.tvDetails);
         Resources resources = getResources();
 
         Bundle bundle = getIntent().getExtras();
@@ -121,7 +120,7 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
         Log.d(TAG, "onMapReady: started");
         gmap = googleMap;
         gmap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_earthquake));
-        gmap.setMinZoomPreference(6);
+        gmap.setMinZoomPreference(5);
         LatLng position = new LatLng(geoLat,geoLong);
 
         gmap.moveCamera(CameraUpdateFactory.newLatLng(position));
@@ -129,15 +128,5 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
         markerOptions.position(position);
         gmap.addMarker(markerOptions);
 
-    }
-
-    public LatLng makeLatLng(String geoLat, String geoLong){
-        Log.d(TAG, "makeLatLng: start with coordinates: "+geoLat+", "+ geoLong);
-
-        double latitude = Double.parseDouble(geoLat);
-        double longitude = Double.parseDouble(geoLong);
-        LatLng latLng = new LatLng(latitude, longitude);
-
-        return latLng;
     }
 }
