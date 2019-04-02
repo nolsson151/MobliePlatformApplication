@@ -57,7 +57,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         viewHolder.tvLocation.setText(currentEarthquake.getLocation());
         viewHolder.tvMagnitude.setText(String.format("M %s", currentEarthquake.getMagnitude()));
         viewHolder.tvDate.setText(currentEarthquake.getPubDate());
-        viewHolder.tvDetails.setText(currentEarthquake.getDetails());
+//        viewHolder.tvDetails.setText(currentEarthquake.getDetails());
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,13 +81,13 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     }
 
     private class ViewHolder{
-        final TextView tvLocation, tvMagnitude, tvDate, tvDetails;
+        final TextView tvLocation, tvMagnitude, tvDate;
 
         ViewHolder(View v){
             this.tvLocation = v.findViewById(R.id.tvLocation);
             this.tvMagnitude = v.findViewById(R.id.tvMagnitude);
             this.tvDate = v.findViewById(R.id.tvPubDate);
-            this.tvDetails = v.findViewById(R.id.tvDetails);
+//            this.tvDetails = v.findViewById(R.id.tvDetails);
         }
     }
 
