@@ -1,4 +1,10 @@
-package com.niklas.gcu.moblieplatformcw;
+package com.gcu.mpd.S1434184;
+
+//
+// Name                 Niklas Olsson
+// Student ID           S1434184
+// Programme of Study   Computing
+//
 
 import java.util.Comparator;
 
@@ -17,20 +23,6 @@ public class Earthquake {
 
     public Earthquake() {
 
-    }
-
-    public Earthquake(String title, double magnitude, String location, int depth, String description, String link, String pubDate,
-                      String category, double geoLat, double geoLong) {
-        title = this.title;
-        magnitude = this.magnitude;
-        location = this.location;
-        depth = this.depth;
-        description = this.description;
-        link = this.link;
-        pubDate = this.pubDate;
-        category = this.category;
-        geoLat = this.geoLat;
-        geoLong = this.geoLong;
     }
 
     public String getTitle() {
@@ -115,15 +107,6 @@ public class Earthquake {
     }
 
 
-    public String getDetails() {
-        return "Magnitude: " + magnitude + '\n' +
-                "Depth: " + depth + " km" + '\n' +
-                "PubDate: " + pubDate + '\n' +
-                "Coordinates: " + geoLat + ", " + geoLong + '\n' +
-                "Link: " + link;
-
-    }
-
     public static Comparator<Earthquake> locationCompare_Az = new Comparator<Earthquake>() {
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -178,18 +161,19 @@ public class Earthquake {
             return p1.compareTo(p2);
         }};
 
-
-
-
     @Override
     public String toString() {
-        return
-//                "title= " + title + '\n' +
-                location + '\n' +
-                        "Magnitude: " + magnitude + '\n' +
-                        "Depth: " + depth + '\n' +
-                        "PubDate: " + pubDate + '\n' +
-                        "Coordinates: " + geoLat + ", " + geoLong + '\n' +
-                        "Link: " + link;
+        return "Earthquake{" +
+                "title='" + title + '\'' +
+                ", magnitude=" + magnitude +
+                ", location='" + location + '\'' +
+                ", depth=" + depth +
+                ", description='" + description + '\'' +
+                ", link='" + link + '\'' +
+                ", pubDate='" + pubDate + '\'' +
+                ", category='" + category + '\'' +
+                ", geoLat=" + geoLat +
+                ", geoLong=" + geoLong +
+                '}';
     }
 }

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.niklas.gcu.moblieplatformcw"
+        applicationId "com.gcu.mpd.S1434184"
         minSdkVersion 26
         targetSdkVersion 28
         versionCode 1

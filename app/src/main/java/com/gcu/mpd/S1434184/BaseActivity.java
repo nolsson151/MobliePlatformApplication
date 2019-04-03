@@ -1,4 +1,10 @@
-package com.niklas.gcu.moblieplatformcw;
+package com.gcu.mpd.S1434184;
+
+//
+// Name                 Niklas Olsson
+// Student ID           S1434184
+// Programme of Study   Computing
+//
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+//
+// Name                 Niklas Olsson
+// Student ID           S1434184
+// Programme of Study   Computing
+//
+-->
 <resources>
     <color name="colorPrimary">#03A9F4</color>
     <color name="colorPrimaryDark">#0288D1</color>

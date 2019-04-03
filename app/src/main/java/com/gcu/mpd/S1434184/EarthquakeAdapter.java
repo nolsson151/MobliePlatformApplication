@@ -1,9 +1,14 @@
-package com.niklas.gcu.moblieplatformcw;
+package com.gcu.mpd.S1434184;
+
+//
+// Name                 Niklas Olsson
+// Student ID           S1434184
+// Programme of Study   Computing
+//
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +28,6 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     public ArrayList<Earthquake> arrayList;
 
 
-
     public EarthquakeAdapter(Context context, int resource, List<Earthquake> earthquakes) {
         super(context, resource);
         this.layoutResource = resource;
@@ -31,7 +35,6 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         this.earthquakes = earthquakes;
         this.arrayList = new ArrayList<>();
         this.arrayList.addAll(earthquakes);
-
     }
 
     @Override
@@ -47,7 +50,8 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
-        final ColorPicker colorPicker;
+        ColorPicker colorPicker;
+        colorPicker = new ColorPicker();
         if(convertView == null){
             convertView = layoutInflater.inflate(layoutResource,parent,false);
 
@@ -57,8 +61,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Earthquake currentEarthquake = earthquakes.get(position);
-        colorPicker = new ColorPicker();
+        final Earthquake currentEarthquake = earthquakes.get(position);
 
         viewHolder.tvLocation.setText(currentEarthquake.getLocation());
         viewHolder.tvMagnitude.setText(String.format("M %s", currentEarthquake.getMagnitude()));
@@ -80,19 +83,19 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
                 intent.putExtra("category", earthquakes.get(position).getCategory());
                 intent.putExtra("geoLat", earthquakes.get(position).getGeoLat());
                 intent.putExtra("geoLong", earthquakes.get(position).getGeoLong());
-                intent.putExtra("details", earthquakes.get(position).getDetails());
+                Log.d(TAG, "onClick: Earthquake selected "+currentEarthquake.getLocation()+ " at position "+position);
                 view.getContext().startActivity(intent);
             }
         });
-
         return convertView;
     }
 
     private class ColorPicker{
-
+    private static final String TAG = "ColorPicker";
 
 
         public void setColor(ViewHolder viewHolder , double d) {
+            Log.d(TAG, "setColor: started on"+ viewHolder.toString());
 
             if(d < 0.0){
                 viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded0));
@@ -121,16 +124,15 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
             else{
                 viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded2));
             }
-
         }
-
     }
 
-
     private class ViewHolder{
+        private static final String TAG = "ViewHolder";
         final TextView tvLocation, tvMagnitude, tvDate, tvDepth, tvCoordinates;
 
         ViewHolder(View v){
+            Log.d(TAG, "ViewHolder: object created");
             this.tvLocation = v.findViewById(R.id.tvLocation);
             this.tvMagnitude = v.findViewById(R.id.tvMagnitude);
             this.tvDate = v.findViewById(R.id.tvPubDate);
@@ -153,7 +155,5 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
             }
         }
         notifyDataSetChanged();
-
     }
-
 }

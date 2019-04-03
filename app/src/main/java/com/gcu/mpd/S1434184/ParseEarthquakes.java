@@ -1,4 +1,4 @@
-package com.niklas.gcu.moblieplatformcw;
+package com.gcu.mpd.S1434184;
 
 import android.util.Log;
 
@@ -7,7 +7,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.logging.XMLFormatter;
 
 public class ParseEarthquakes {
     private static final String TAG = "ParseEarthquakes";

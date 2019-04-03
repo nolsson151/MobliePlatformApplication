@@ -1,4 +1,10 @@
-package com.niklas.gcu.moblieplatformcw;
+package com.gcu.mpd.S1434184;
+
+//
+// Name                 Niklas Olsson
+// Student ID           S1434184
+// Programme of Study   Computing
+//
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,7 +41,6 @@ public class MainActivity extends BaseActivity {
     private ArrayList<Earthquake> sortedList;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,25 +66,23 @@ public class MainActivity extends BaseActivity {
         if(masterList == null){
             DownloadData downloadData = new DownloadData();
             downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
-        }else if(masterList.size() == 0){
+        } else if(masterList.size() == 0){
             DownloadData downloadData = new DownloadData();
             downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
-        }
-        else {
+        } else {
             masterList.clear();
             DownloadData downloadData = new DownloadData();
             downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
         }
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.d(TAG, "onCreateOptionsMenu: created");
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
         MenuItem myActionMenuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) myActionMenuItem.getActionView();
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -94,6 +97,7 @@ public class MainActivity extends BaseActivity {
                     listEarthquakes.clearTextFilter();
                 }
                 else {
+                    Log.d(TAG, "onQueryTextChange: Query submitted "+s);
                     earthquakeAdapter.filter(s);
                 }
                 return true;
@@ -191,14 +195,14 @@ public class MainActivity extends BaseActivity {
 
     public void showDatePicker(View view) {
         DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(),
-                getString(R.string.datepicker));
+        newFragment.show(getSupportFragmentManager(), getString(R.string.datepicker));
     }
 
     public void processDatePickerResult(int year, int month, int day) {
         Log.d(TAG, "processDatePickerResult: "+day+" "+month+" "+year);
         sortedList = new ArrayList<>();
         String date = new GregorianCalendar(year,month, day).toZonedDateTime().format(DateTimeFormatter.ofPattern("dd MMM uuuu"));
+
         for(Earthquake e : masterList){
             if(e.getPubDate().equals(date)){
                 sortedList.add(e);
@@ -206,13 +210,14 @@ public class MainActivity extends BaseActivity {
         }
         if(sortedList.size() == 0){
             Toast.makeText(this, "No earthquakes found for: "+ date, Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "processDatePickerResult: No results found on "+ date);
         }
         else{
             earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
             listEarthquakes.setAdapter(earthquakeAdapter);
             earthquakeAdapter.notifyDataSetChanged();
         }
-
+        Log.d(TAG, "processDatePickerResult: End");
     }
 
     private class DownloadData extends AsyncTask<String, Void, String> {
@@ -241,7 +246,6 @@ public class MainActivity extends BaseActivity {
             if (rssFeed == null) {
                 Log.e(TAG, "doInBackground: Error downloading");
             }
-
             return rssFeed;
         }
 
@@ -269,7 +273,6 @@ public class MainActivity extends BaseActivity {
                 return xmlResult.toString();
             } catch (MalformedURLException e) {
                 Log.e(TAG, "downloadXML: Invalid URL " + e.getMessage());
-
             } catch (IOException e) {
                 Log.e(TAG, "downloadXML: IO exception reading data " + e.getMessage());
             }

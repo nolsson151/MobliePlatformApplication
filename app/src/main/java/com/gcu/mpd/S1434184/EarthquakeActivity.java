@@ -1,8 +1,12 @@
-package com.niklas.gcu.moblieplatformcw;
+package com.gcu.mpd.S1434184;
 
-import android.content.Intent;
+//
+// Name                 Niklas Olsson
+// Student ID           S1434184
+// Programme of Study   Computing
+//
+
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +21,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class EarthquakeActivity extends MainActivity implements OnMapReadyCallback {
     private static final String TAG = "EarthquakeActivity";
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
     private MapView mapView;
@@ -28,10 +32,9 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Log.d(TAG, "onCreate: started");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_earthquake);
-        Log.d(TAG, "onCreate: started");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
@@ -101,6 +104,7 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: EarthquakeActivity finsihed, return to MainActivity");
                 finish();
             }
         });

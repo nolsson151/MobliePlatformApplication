@@ -1,11 +1,16 @@
-package com.niklas.gcu.moblieplatformcw;
+package com.gcu.mpd.S1434184;
+
+//
+// Name                 Niklas Olsson
+// Student ID           S1434184
+// Programme of Study   Computing
+//
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.widget.DatePicker;
 
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.niklas.gcu.moblieplatformcw;
+package com.gcu.mpd.S1434184;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
