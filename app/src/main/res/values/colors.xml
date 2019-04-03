@@ -4,13 +4,16 @@
     <color name="colorPrimaryDark">#0288D1</color>
     <color name="colorAccent">#FF0266</color>
     <color name="secondary_text">#b0b4ba</color>
-    <color name="iconColor">#ffffff</color>
+    <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="maglevel1">#A7DCDA</color>
-    <color name="maglevel2">#89D7AF</color>
-    <color name="maglevel3">#6DD26E</color>
-    <color name="maglevel4">#8CCD52</color>
-    <color name="maglevel5">#C0C838</color>
-    <color name="maglevel6">#C37D20</color>
-    <color name="maglevel7">#BE1A09</color>
+    <color name="magleveloutline">#eaecef</color>
+    <color name="maglevel0">#f0f2f4</color>
+    <color name="maglevel1">#b0fcf9</color>
+    <color name="maglevel2">#93F3C8</color>
+    <color name="maglevel3">#78EA88</color>
+    <color name="maglevel4">#81E15E</color>
+    <color name="maglevel5">#A9D846</color>
+    <color name="maglevel6">#CFC130</color>
+    <color name="maglevel7">#C6711B</color>
+    <color name="maglevel8">#BE1A09</color>
 </resources>

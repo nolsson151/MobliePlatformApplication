@@ -2,7 +2,6 @@ package com.niklas.gcu.moblieplatformcw;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,10 +63,35 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         viewHolder.tvDepth.setText(String.format("Depth: %s km", currentEarthquake.getDepth()));
         viewHolder.tvCoordinates.setText(String.format("Coordinates: %s, %s", currentEarthquake.getGeoLat(), currentEarthquake.getGeoLong()));
 
-//        double color = currentEarthquake.getMagnitude();
-//        if(color <=0.9){
-//            viewHolder.tvMagnitude.setBackgroundColor(getContext().getResources().getColor(R.color.maglevel1));
-//        }
+        double color = currentEarthquake.getMagnitude();
+        if(color < 0.0){
+            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded0));
+        }
+        else if(color <=0.9){
+            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded1));
+//            viewHolder.tvMagnitude.setBackgroundColor(Color.rgb(176, 252, 249));
+        }
+        else if(color <=1.9){
+            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded2));
+        }
+        else if(color <=2.9){
+            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded3));
+        }
+        else if(color <=3.9){
+            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded4));
+        }
+        else if(color <=4.9){
+            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded5));
+        }
+        else if(color <=5.9){
+            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded6));
+        }
+        else if(color <=6.9){
+            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded7));
+        }
+        else{
+            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded2));
+        }
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +113,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
 
         return convertView;
     }
+
 
     private class ViewHolder{
         final TextView tvLocation, tvMagnitude, tvDate, tvDepth, tvCoordinates;

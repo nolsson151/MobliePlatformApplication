@@ -27,6 +27,7 @@
         android:textAlignment="viewStart"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:background="@drawable/rounded0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLocation"
         tools:text="@string/earthquake_magnitude" />
@@ -70,16 +71,4 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDepth"
         tools:text="@string/earthquake_coordinates" />
 
-    <!--<TextView-->
-    <!--android:id="@+id/tvDetails"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginStart="16dp"-->
-    <!--android:layout_marginEnd="16dp"-->
-    <!--android:layout_marginBottom="8dp"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/tvPubDate"-->
-    <!--tools:text="@string/earthquake_details" />-->
 </android.support.constraint.ConstraintLayout>
