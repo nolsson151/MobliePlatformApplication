@@ -3,6 +3,7 @@ package com.niklas.gcu.moblieplatformcw;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         this.layoutResource = resource;
         this.layoutInflater = LayoutInflater.from(context);
         this.earthquakes = earthquakes;
-        this.arrayList = new ArrayList<Earthquake>();
+        this.arrayList = new ArrayList<>();
         this.arrayList.addAll(earthquakes);
 
     }
@@ -46,6 +47,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
+        final ColorPicker colorPicker;
         if(convertView == null){
             convertView = layoutInflater.inflate(layoutResource,parent,false);
 
@@ -56,42 +58,14 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         }
 
         Earthquake currentEarthquake = earthquakes.get(position);
+        colorPicker = new ColorPicker();
 
         viewHolder.tvLocation.setText(currentEarthquake.getLocation());
         viewHolder.tvMagnitude.setText(String.format("M %s", currentEarthquake.getMagnitude()));
         viewHolder.tvDate.setText(currentEarthquake.getPubDate());
         viewHolder.tvDepth.setText(String.format("Depth: %s km", currentEarthquake.getDepth()));
         viewHolder.tvCoordinates.setText(String.format("Coordinates: %s, %s", currentEarthquake.getGeoLat(), currentEarthquake.getGeoLong()));
-
-        double color = currentEarthquake.getMagnitude();
-        if(color < 0.0){
-            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded0));
-        }
-        else if(color <=0.9){
-            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded1));
-//            viewHolder.tvMagnitude.setBackgroundColor(Color.rgb(176, 252, 249));
-        }
-        else if(color <=1.9){
-            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded2));
-        }
-        else if(color <=2.9){
-            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded3));
-        }
-        else if(color <=3.9){
-            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded4));
-        }
-        else if(color <=4.9){
-            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded5));
-        }
-        else if(color <=5.9){
-            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded6));
-        }
-        else if(color <=6.9){
-            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded7));
-        }
-        else{
-            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded2));
-        }
+        colorPicker.setColor(viewHolder, currentEarthquake.getMagnitude());
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +86,44 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         });
 
         return convertView;
+    }
+
+    private class ColorPicker{
+
+
+
+        public void setColor(ViewHolder viewHolder , double d) {
+
+            if(d < 0.0){
+                viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded0));
+            }
+            else if(d <=0.9){
+                viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded1));
+            }
+            else if(d <=1.9){
+                viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded2));
+            }
+            else if(d <=2.9){
+                viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded3));
+            }
+            else if(d <=3.9){
+                viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded4));
+            }
+            else if(d <=4.9){
+                viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded5));
+            }
+            else if(d <=5.9){
+                viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded6));
+            }
+            else if(d <=6.9){
+                viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded7));
+            }
+            else{
+                viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded2));
+            }
+
+        }
+
     }
 
 

@@ -47,10 +47,11 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
         String location = bundle.getString("location");
         Double magnitude = bundle.getDouble("magnitude");
         String pubDate = bundle.getString("pubDate");
-        Integer depth = bundle.getInt("depth", 0);
+        int depth = bundle.getInt("depth", 0);
         String link = bundle.getString("link");
         geoLat = bundle.getDouble("geoLat");
         geoLong = bundle.getDouble("geoLong");
+
         Log.d(TAG, "onCreate: strings pulled though");
 
         tvLocation.setText(location);
@@ -59,7 +60,33 @@ public class EarthquakeActivity extends AppCompatActivity implements OnMapReadyC
         tvDepth.setText(String.format("Depth: %s km", depth));
         tvCoordinates.setText(String.format("Coordinates: %s, %s", geoLat, geoLong));
         tvLink.setText(String.format("Link: %s", link));
-//        TvDetails.setText(details);
+        if(magnitude < 0.0){
+            tvMagnitude.setBackground(resources.getDrawable(R.drawable.rounded0));
+        }
+        else if(magnitude <=0.9){
+            tvMagnitude.setBackground(resources.getDrawable(R.drawable.rounded1));
+        }
+        else if(magnitude <=1.9){
+            tvMagnitude.setBackground(resources.getDrawable(R.drawable.rounded2));
+        }
+        else if(magnitude <=2.9){
+            tvMagnitude.setBackground(resources.getDrawable(R.drawable.rounded3));
+        }
+        else if(magnitude <=3.9){
+            tvMagnitude.setBackground(resources.getDrawable(R.drawable.rounded4));
+        }
+        else if(magnitude <=4.9){
+            tvMagnitude.setBackground(resources.getDrawable(R.drawable.rounded5));
+        }
+        else if(magnitude <=5.9){
+            tvMagnitude.setBackground(resources.getDrawable(R.drawable.rounded6));
+        }
+        else if(magnitude <=6.9){
+            tvMagnitude.setBackground(resources.getDrawable(R.drawable.rounded7));
+        }
+        else{
+            tvMagnitude.setBackground(resources.getDrawable(R.drawable.rounded8));
+        }
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
