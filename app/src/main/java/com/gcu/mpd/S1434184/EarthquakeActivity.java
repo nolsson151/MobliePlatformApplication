@@ -133,6 +133,42 @@ public class EarthquakeActivity extends MainActivity implements OnMapReadyCallba
 
     /**
      *
+     */
+    @Override
+    protected void onResume() {
+        mapView.onResume();
+        super.onResume();
+    }
+
+    /**
+     *
+     */
+    @Override
+    protected void onPause() {
+        mapView.onPause();
+        super.onPause();
+    }
+
+    /**
+     *
+     */
+    @Override
+    protected void onDestroy() {
+        mapView.onDestroy();
+        super.onDestroy();
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void onLowMemory() {
+        mapView.onLowMemory();
+        super.onLowMemory();
+    }
+
+    /**
+     *
      * @param googleMap
      */
     @Override

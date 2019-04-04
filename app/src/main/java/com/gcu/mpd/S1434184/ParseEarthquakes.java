@@ -70,12 +70,16 @@ public class ParseEarthquakes {
                             } else if("description".equalsIgnoreCase(tagname)){
                                 earthquake.setDescription(text);
                                 String[] strings = earthquake.getDescription().split(";");
+
                                 StringBuilder locationBuilder = new StringBuilder(strings[1]);
-                                StringBuilder depthBuilder = new StringBuilder(strings[3]);
-                                StringBuilder magBuilder = new StringBuilder(strings[4]);
                                 String location = locationBuilder.substring(11, locationBuilder.length()-1);
+
+                                StringBuilder depthBuilder = new StringBuilder(strings[3]);
                                 int depth = Integer.parseInt(depthBuilder.substring(8, depthBuilder.length()-4));
+
+                                StringBuilder magBuilder = new StringBuilder(strings[4]);
                                 Double magnitude = Double.parseDouble(magBuilder.substring(12));
+
                                 earthquake.setLocation(location);
                                 earthquake.setDepth(depth);
                                 earthquake.setMagnitude(magnitude);

@@ -95,6 +95,7 @@ public class MainActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem myActionMenuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView.setQueryHint(getResources().getString(R.string.searchable_hint));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             /**
@@ -150,7 +151,7 @@ public class MainActivity extends BaseActivity {
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
 
-            case R.id.action_A_z:
+            case R.id.action_Az:
                 Log.d(TAG, "onOptionsItemSelected: Sort A-z selected");
                 this.sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.locationCompare_A_z);
@@ -159,7 +160,16 @@ public class MainActivity extends BaseActivity {
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
 
-            case R.id.action_magnitude:
+            case R.id.action_Za:
+                Log.d(TAG, "onOptionsItemSelected: Sort A-z selected");
+                this.sortedList = new ArrayList<>(masterList);
+                Collections.sort(sortedList, Earthquake.locationCompare_Z_a);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
+                break;
+
+            case R.id.action_highest:
                 Log.d(TAG, "onOptionsItemSelected: Sort Magnitude selected");
                 this.sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.magnitudeCompare_HighLow);
@@ -168,10 +178,28 @@ public class MainActivity extends BaseActivity {
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
 
-            case R.id.action_depth:
+            case R.id.action_lowest:
+                Log.d(TAG, "onOptionsItemSelected: Sort Magnitude selected");
+                this.sortedList = new ArrayList<>(masterList);
+                Collections.sort(sortedList, Earthquake.magnitudeCompare_LowHigh);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
+                break;
+
+            case R.id.action_deep:
                 Log.d(TAG, "onOptionsItemSelected: Sort Depth selected");
                 this.sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.depthCompare_HighLow);
+                earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
+                listEarthquakes.setAdapter(earthquakeAdapter);
+                earthquakeAdapter.notifyDataSetChanged();
+                break;
+
+            case R.id.action_shallow:
+                Log.d(TAG, "onOptionsItemSelected: Sort Depth selected");
+                this.sortedList = new ArrayList<>(masterList);
+                Collections.sort(sortedList, Earthquake.depthCompare_LowHigh);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();

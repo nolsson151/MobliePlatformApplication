@@ -8,7 +8,6 @@
 -->
 <resources>
     <string name="app_name">S1434184</string>
-    <string name="id_student">S1434184</string>
     <string name="earthquake_location">Location</string>
     <string name="earthquake_magnitude">Magnitude</string>
     <string name="earthquake_date">Date</string>
@@ -21,17 +20,19 @@
     <string name="action_date">Date</string>
     <string name="action_sort">Sort</string>
     <string name="action_recent">Most Recent</string>
-    <string name="action_Az">Sort A-z</string>
+    <string name="action_alphabetically">Sort Alphabetically</string>
+    <string name="action_Az">(A - Z)</string>
+    <string name="action_Za">(Z - A)</string>
     <string name="action_magnitude">Sort Magnitude</string>
+    <string name="action_highest">(High - Low)</string>
+    <string name="action_lowest">(Low - High)</string>
     <string name="action_depth">Sort Depth</string>
     <string name="action_coordinates">Sort Coordinates</string>
     <string name="action_north">Most Northerly</string>
     <string name="action_east">Most Easterly</string>
     <string name="action_south">Most Southerly</string>
     <string name="action_west">Mostly Westerly</string>
-    <string name="title_activity_search">Search Activity</string>
     <string name="title_activity_earthquake">Earthquake Activity</string>
     <string name="searchable_hint">Enter location</string>
-    <string name="title_activity_maps">Map</string>
     <string name="datepicker">datePicker</string>
 </resources>
