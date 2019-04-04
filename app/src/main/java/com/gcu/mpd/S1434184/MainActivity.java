@@ -42,8 +42,12 @@ public class MainActivity extends BaseActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     /**
+     * Creates MainActivity. Toolbar is implemented from BaseActivity which will contain search and sort options
+     * in the toolbar. Method implements asynchronous task DownloadData to download earthquake XML from BGS Seismology
+     * which will be used in the application, one of the most vital tasks. This method also contains a listener for a
+     * user swiping down to refresh the data.
      *
-     * @param savedInstanceState
+     * @param savedInstanceState loads activity state
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +71,10 @@ public class MainActivity extends BaseActivity {
 
 
     /**
-     *
+     * Method that is called from a swipeRefreshLayoutListener in the onCreate method that carries out the asynchronous method
+     * of DownloadData once again. This will download the data once again and add any new earthquakes that may have occured.
+     * Method will test if there is any data in the masterList array, clear any elements if present to prepare for new ones,
+     * or simply attempt to download the earthquake data. This is in case of no internet connection or server side faults.
      */
     public void refreshData(){
 
@@ -85,9 +92,12 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
+     * Method that creates a SearchView used to search earthquakes by location in the toolbar as well as inflate options menu used
+     * for sorting arrayAdapter. Menu is inflated from menu_main.xml and a hint 'Enter Location' is prompted to the user. Method
+     * implements two required methods used to search the custom arrayAdapter.
      *
-     * @param menu
-     * @return
+     * @param menu Menu to inflate
+     * @return     True on created options menu
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,9 +109,10 @@ public class MainActivity extends BaseActivity {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             /**
-             *
-             * @param s
-             * @return
+             * Required method of setOnQueryTextListener, used to search for a single given string. It is not used in this
+             * implementation and is set to return false.
+             * @param s String to search
+             * @return False
              */
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -109,9 +120,13 @@ public class MainActivity extends BaseActivity {
             }
 
             /**
+             *  Overridden required method of setOnQueryTextListener, that takes a string input from the user and filters custom
+             * arrayAdapter of earthquakes if the string matches the filter. If the string is empty the filter is set to ""
+             * to indicate that no filter is used, else every letter given is used in a new query and the filter is then
+             * applied to each new character given.
              *
-             * @param s
-             * @return
+             * @param s String of characters to search
+             * @return  True always
              */
             @Override
             public boolean onQueryTextChange(String s) {
@@ -131,6 +146,8 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
+     * Method used to determine the action taken on which option item is selected by the user. A switch statement retrieves the menu
+     * item by it's R.id and
      *
      * @param item
      * @return
@@ -302,7 +319,8 @@ public class MainActivity extends BaseActivity {
             super.onPostExecute(s);
             Log.d(TAG, "onPostExecute: parameter is " + s);
             if (s == null){
-                Toast.makeText(MainActivity.this, "Whoops, there was a connection error. Please check your connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,
+                        "Whoops, there was a connection error. Please check your connection", Toast.LENGTH_SHORT).show();
             }
             else{
                 parseEarthquakes = new ParseEarthquakes();
