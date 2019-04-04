@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
      * which will be used in the application, one of the most vital tasks. This method also contains a listener for a
      * user swiping down to refresh the data.
      *
-     * @param savedInstanceState loads activity state
+     * @param savedInstanceState Loads activity state
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

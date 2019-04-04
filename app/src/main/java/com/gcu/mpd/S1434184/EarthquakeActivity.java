@@ -175,7 +175,8 @@ public class EarthquakeActivity extends MainActivity implements OnMapReadyCallba
     public void onMapReady(GoogleMap googleMap) {
         Log.d(TAG, "onMapReady: started");
         gmap = googleMap;
-        gmap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_earthquake));
+        gmap.setMapStyle(MapStyleOptions.loadRawResourceStyle(
+                this, R.raw.style_earthquake));
         gmap.setMinZoomPreference(5);
         LatLng position = new LatLng(geoLat,geoLong);
 

@@ -20,29 +20,32 @@ public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
     /**
+     * Method used to override onCreateDialog create a DatePickerDialog fragment. A calendar object
+     * is created and a listener year for the year, month, and day which will await input from user
+     * selecting a date.
      *
-     * @param savedInstanceState
-     * @return
+     * @param savedInstanceState Loads activity state
+     * @return                   DatePickerDialog
      */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the current date as the default date in the picker.
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        // Create a new instance of DatePickerDialog and return it.
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
     /**
+     * Method that will retrive the data from the DatePickerDialog and pass the values to
+     * processDatePickerResult that will process the values into a date to search for.
      *
-     * @param datePicker
-     * @param year
-     * @param month
-     * @param day
+     * @param datePicker DatePicker object
+     * @param year       Year selected
+     * @param month      Month selected
+     * @param day        Day selected
      */
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {

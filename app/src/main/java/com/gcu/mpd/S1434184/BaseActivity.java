@@ -16,8 +16,9 @@ public class BaseActivity extends AppCompatActivity {
     static final String EARTHQUAKE_QUERY = "EARTHQUAKE_QUERY";
 
     /**
-     *
-     * @param enableHome
+     * Method that implements an action bar, used within the MainActivity to hold an options menu for searching
+     * and sorting.
+     * @param enableHome boolean for turning the toolbar on or off
      */
     public void activateToolbar(boolean enableHome) {
         Log.d(TAG, "activateToolbar: starts");
