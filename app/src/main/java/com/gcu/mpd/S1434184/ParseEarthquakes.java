@@ -13,6 +13,7 @@ public class ParseEarthquakes {
     private ArrayList<Earthquake> earthquakes;
 
     /**
+     * Constructor method for ParseEarthquakes.
      *
      */
     public ParseEarthquakes(){
@@ -20,6 +21,7 @@ public class ParseEarthquakes {
     }
 
     /**
+     * Method returns an ArrayList of earthquakes.
      *
      * @return
      */
@@ -28,9 +30,15 @@ public class ParseEarthquakes {
     }
 
     /**
+     * Method that parses downloaded XML data into values that are used to set the values of an
+     * Earthquake object. The method uses an XmlPullParserFactory that begins at a start tag name,
+     * 'item', and end tag '/item' and then searches for matching tag names that contain any data
+     * between them. This data is cleaned and formatted using StringBuilders if needed before being
+     * used to set as value of a newly created Earthquake object. This Earthquake object is then
+     * added to the earthquakes ArrayList.
      *
-     * @param xml
-     * @return
+     * @param xml String containing XML data
+     * @return Status if parsing was completed successfully.
      */
     public boolean parse(String xml){
         boolean status = true;

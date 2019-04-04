@@ -29,8 +29,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
 
 
     /**
-     * Constructor method for EarthquakeAdapter. This class extends from ArrayAdapter and uses the
-     * ViewHolder Pattern 
+     * Constructor method for EarthquakeAdapter.
      *
      * @param context Context from activity
      * @param resource Application resource documents
@@ -67,6 +66,9 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     }
 
     /**
+     * Method to get View using ViewHolder pattern. A ViewHolder object is created finding the
+     * the required TextView and it's value is set from the earthqaukes stored in the earthquakes
+     * ArrayList.
      *
      * @param position
      * @param convertView
@@ -115,9 +117,12 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     }
 
     /**
+     * Method used to style the magnitude TextView. If a certain magnitude is given, the drawable
+     * chosen will reflect the severity of the earthquake, grey being severe and red being most
+     * severe.
      *
-     * @param viewHolder
-     * @param magnitude
+     * @param viewHolder ViewHolder object to set color on
+     * @param magnitude Magnitude to check severity of
      */
     public void setColor(ViewHolder viewHolder , double magnitude) {
         Log.d(TAG, "setColor: started on"+ viewHolder.toString());
@@ -157,6 +162,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         final TextView tvLocation, tvMagnitude, tvDate, tvDepth, tvCoordinates;
 
         /**
+         * Constructor method of ViewHolder.
          *
          * @param v
          */
@@ -171,8 +177,15 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     }
 
     /**
+     * Method used to filter EarthquakeAdapter. Method takes a sequence of characters to search for
+     * and matches them against any earthquakes location String value. The earthquake ArrayList is
+     * first emptied. If there is no value given, earthquake ArrayList is repopulated from a
+     * secondary ArrayList that contains the original earthquakes ArrayList set during the class
+     * constructor. If there is a value given that matches an earthquake' location, the earthquake
+     * is added from the secondary ArrayList to the original earthquakes ArrayList, repopulating the
+     * list with only matched earthquakes.
      *
-     * @param charText
+     * @param charText String given to filter for.
      */
     public void filter(String charText){
         charText = charText.toUpperCase(Locale.getDefault());
