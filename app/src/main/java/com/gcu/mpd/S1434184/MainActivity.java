@@ -279,7 +279,7 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * Method to create a DatePickerFragment used for to select a date to search on which earthquakes occurred.
+     * Method to create a DatePickerDialog fragment used for to select a date to search on which earthquakes occurred.
      *
      */
     public void showDatePicker() {
@@ -288,7 +288,7 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * Method to process the results of DatePickerFragment. Values given are formatted using GregorianCalendar into a sting
+     * Method to process the results of DatePickerDialog fragment. Values given are formatted using GregorianCalendar into a sting
      * to match the pubDate of an Earthquake. A for-loop is used to iterate through the masterList, if the formatted date string
      * matches an earthquake pubDate it is added to an instantiation of sortedList. sortedList is then applied to the custom
      * arrayAdapter to display the earthquakes that having matching dates. If no dates are found, a toast message is given to

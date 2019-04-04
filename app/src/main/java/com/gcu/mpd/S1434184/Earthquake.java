@@ -22,71 +22,79 @@ public class Earthquake {
     private double geoLong;
 
     /**
-     *
+     * Constructor method for Earthquake.
      */
     public Earthquake() {
 
     }
 
     /**
+     * Method to get earthquake title.
      *
-     * @return
+     * @return  Earthquake title.
      */
     public String getTitle() {
         return title;
     }
 
     /**
+     * Method to set earthquake title.
      *
-     * @param title
+     * @param title String to set earthquake title.
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
+     * Method to get earthquake magnitude.
      *
-     * @return
+     * @return Double earthquake magnitude
      */
     public Double getMagnitude() {
         return magnitude;
     }
 
     /**
+     * Method to set earthquake magnitude
      *
-     * @param magnitude
+     * @param magnitude Double to set earthquake magnitude.
      */
     public void setMagnitude(Double magnitude) {
         this.magnitude = magnitude;
     }
 
     /**
+     * Method to get earthquake location.
      *
-     * @return
+     * @return String earthquake location.
      */
     public String getLocation() {
         return location;
     }
 
     /**
+     * Method to set earthquake location.
      *
-     * @param location
+     * @param location String to set earthquake location.
      */
     public void setLocation(String location) {
         this.location = location;
     }
 
     /**
+     *  Method to get earthquake depth.
      *
-     * @return
+     * @return int earthquake depth.
      */
     public int getDepth() {
         return depth;
     }
 
     /**
+     * Method to set earthquake depth.
      *
-     * @param depth
+     * @param depth int to set earthquake depth.
      */
     public void setDepth(int depth) {
         this.depth = depth;
@@ -94,96 +102,109 @@ public class Earthquake {
 
 
     /**
+     * Method to get earthquake description. Long unformatted value from BSG Seismology
      *
-     * @return
+     * @return String earthquake description.
      */
     public String getDescription() {
         return description;
     }
 
     /**
+     * Method to set earthquake description.
      *
-     * @param description
+     * @param description String to set earthquake description.
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
+     * Method to get earthquake link.
      *
-     * @return
+     * @return String earthquake link.
      */
     public String getLink() {
         return link;
     }
 
     /**
+     * Method to set earthquake link.
      *
-     * @param link
+     * @param link String to set earthquake link.
      */
     public void setLink(String link) {
         this.link = link;
     }
 
     /**
+     * Method to get earthquake publication date.
      *
-     * @return
+     * @return String earthquake publication date.
      */
     public String getPubDate() {
         return pubDate;
     }
 
     /**
+     * Method to set earthquake publication date.
+     * Value must be formatted as: dd MM uuuu.
      *
-     * @param pubDate
+     * @param pubDate String to set earthquake publication date.
      */
     public void setPubDate(String pubDate) {
         this.pubDate = pubDate;
     }
 
     /**
+     * Method to get earthquake category.
      *
-     * @return
+     * @return String earthquake category.
      */
     public String getCategory() {
         return category;
     }
 
     /**
+     * Method to set earthquake category.
      *
-     * @param category
+     * @param category String to set earthquake category.
      */
     public void setCategory(String category) {
         this.category = category;
     }
 
     /**
+     * Method to get earthquake latitude.
      *
-     * @return
+     * @return Double earthquake latitude.
      */
     public double getGeoLat() {
         return geoLat;
     }
 
     /**
+     * Method to set earthquake latitude.
      *
-     * @param geoLat
+     * @param geoLat Double to set earthquake latitude.
      */
     public void setGeoLat(double geoLat) {
         this.geoLat = geoLat;
     }
 
     /**
+     * Method to get earthquake longitude.
      *
-     * @return
+     * @return Double earthquake longitude.
      */
     public double getGeoLong() {
         return geoLong;
     }
 
     /**
+     * Method to set earthquake longitude.
      *
-     * @param geoLong
+     * @param geoLong Double to set earthquake longitude.
      */
     public void setGeoLong(double geoLong) {
         this.geoLong = geoLong;
@@ -192,10 +213,11 @@ public class Earthquake {
 
     public static Comparator<Earthquake> locationCompare_A_z = new Comparator<Earthquake>() {
         /**
+         * Comparator method to earthquake location in alphabetical order.
          *
-         * @param e1
-         * @param e2
-         * @return
+         * @param e1 1st earthquake to compare.
+         * @param e2 2nd earthquake to compare.
+         * @return int of earthquake order.
          */
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -205,10 +227,11 @@ public class Earthquake {
         }};
     public static Comparator<Earthquake> locationCompare_Z_a = new Comparator<Earthquake>() {
         /**
+         * Comparator method to earthquake location in reversed alphabetical order.
          *
-         * @param e1
-         * @param e2
-         * @return
+         * @param e1 1st earthquake to compare.
+         * @param e2 2nd earthquake to compare.
+         * @return int of earthquake order.
          */
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -220,10 +243,11 @@ public class Earthquake {
 
     public static Comparator<Earthquake> magnitudeCompare_HighLow = new Comparator<Earthquake>() {
         /**
+         * Comparator method to earthquake magnitude in ascending order.
          *
-         * @param e1
-         * @param e2
-         * @return
+         * @param e1 1st earthquake to compare.
+         * @param e2 2nd earthquake to compare.
+         * @return int of earthquake order.
          */
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -234,10 +258,11 @@ public class Earthquake {
 
     public static Comparator<Earthquake> magnitudeCompare_LowHigh = new Comparator<Earthquake>() {
         /**
+         * Comparator method to earthquake magnitude in descending order.
          *
-         * @param e1
-         * @param e2
-         * @return
+         * @param e1 1st earthquake to compare.
+         * @param e2 2nd earthquake to compare.
+         * @return int of earthquake order.
          */
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -248,10 +273,11 @@ public class Earthquake {
 
     public static Comparator<Earthquake> depthCompare_HighLow = new Comparator<Earthquake>() {
         /**
+         * Comparator method to earthquake depth in ascending order.
          *
-         * @param e1
-         * @param e2
-         * @return
+         * @param e1 1st earthquake to compare.
+         * @param e2 2nd earthquake to compare.
+         * @return int of earthquake order.
          */
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -262,10 +288,11 @@ public class Earthquake {
 
     public static Comparator<Earthquake> depthCompare_LowHigh = new Comparator<Earthquake>() {
         /**
+         * Comparator method to earthquake depth in descending order.
          *
-         * @param e1
-         * @param e2
-         * @return
+         * @param e1 1st earthquake to compare.
+         * @param e2 2nd earthquake to compare.
+         * @return int of earthquake order.
          */
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -276,10 +303,11 @@ public class Earthquake {
 
     public static Comparator<Earthquake> positionCompare_North = new Comparator<Earthquake>() {
         /**
+         * Comparator method to earthquake coordinates in ascending order by most Northern position.
          *
-         * @param e1
-         * @param e2
-         * @return
+         * @param e1 1st earthquake to compare.
+         * @param e2 2nd earthquake to compare.
+         * @return int of earthquake order.
          */
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -289,10 +317,11 @@ public class Earthquake {
         }};
     public static Comparator<Earthquake> positionCompare_South = new Comparator<Earthquake>() {
         /**
+         * Comparator method to earthquake coordinates in ascending order by most Southern position.
          *
-         * @param e1
-         * @param e2
-         * @return
+         * @param e1 1st earthquake to compare.
+         * @param e2 2nd earthquake to compare.
+         * @return int of earthquake order.
          */
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -302,10 +331,11 @@ public class Earthquake {
         }};
     public static Comparator<Earthquake> positionCompare_East = new Comparator<Earthquake>() {
         /**
+         * Comparator method to earthquake coordinates in ascending order by most Eastern position.
          *
-         * @param e1
-         * @param e2
-         * @return
+         * @param e1 1st earthquake to compare.
+         * @param e2 2nd earthquake to compare.
+         * @return int of earthquake order.
          */
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -315,10 +345,11 @@ public class Earthquake {
     }};
     public static Comparator<Earthquake> positionCompare_West = new Comparator<Earthquake>() {
         /**
+         * Comparator method to earthquake coordinates in ascending order by most Western position.
          *
-         * @param e1
-         * @param e2
-         * @return
+         * @param e1 1st earthquake to compare.
+         * @param e2 2nd earthquake to compare.
+         * @return int of earthquake order.
          */
         @Override
         public int compare(Earthquake e1, Earthquake e2) {
@@ -328,8 +359,9 @@ public class Earthquake {
         }};
 
     /**
+     * Method to return Earthquake object to string.
      *
-     * @return
+     * @return String of Earthquake object.
      */
     @Override
     public String toString() {

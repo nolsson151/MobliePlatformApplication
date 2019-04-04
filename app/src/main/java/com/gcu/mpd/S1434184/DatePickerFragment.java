@@ -39,8 +39,9 @@ public class DatePickerFragment extends DialogFragment
     }
 
     /**
-     * Method that will retrive the data from the DatePickerDialog and pass the values to
-     * processDatePickerResult that will process the values into a date to search for.
+     * Method that will retrieve the data from the DatePickerDialog and pass the values to
+     * processDatePickerResult in MainActivity that will process the values into a date to search
+     * for.
      *
      * @param datePicker DatePicker object
      * @param year       Year selected
