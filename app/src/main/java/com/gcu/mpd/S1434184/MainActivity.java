@@ -147,10 +147,16 @@ public class MainActivity extends BaseActivity {
 
     /**
      * Method used to determine the action taken on which option item is selected by the user. A switch statement retrieves the menu
-     * item by it's R.id and
+     * item by it's R.id, each case then instantiates a new ArrayList of earthquakes called sortedList containing all elements of the
+     * masterList of earthquakes. The sortedList is then sorted using the Collections framework .sort() and a custom Comparator of the value
+     * to sorted, either location, magnitude, depth, or coordinate. The sortedList is then applied to the custom arrayAdapter to display the
+     * sorted results.
      *
-     * @param item
-     * @return
+     * In the case of R.id.action_recent, the masterList is applied to the custom arrayAdapter as this will contain the most recent
+     * earthquakes. R.id.action_date creates a DialogFragment in which the lifecycle will complete after the switch statement case.
+     *
+     * @param item Options item selected
+     * @return     True if option item selected.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -158,7 +164,7 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()){
             case R.id.action_date:
                 Log.d(TAG, "onOptionsItemSelected: Date selected");
-                showDatePicker(this.datePicker);
+                showDatePicker();
                 break;
 
             case R.id.action_recent:
@@ -262,24 +268,31 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
+     * Simple method used to copy the elements of one array to the masterList. Used during DownloadData to store parsed values
+     * into the masterList.
      *
-     * @param listToSet
+     * @param arrayList List to be copied
      */
-    public void setMasterList(ArrayList listToSet){
+    public void setMasterList(ArrayList arrayList){
         this.masterList = new ArrayList<>();
-        masterList.addAll(listToSet);
+        masterList.addAll(arrayList);
     }
 
     /**
+     * Method to create a DatePickerFragment used for to select a date to search on which earthquakes occurred.
      *
-     * @param view
      */
-    public void showDatePicker(View view) {
+    public void showDatePicker() {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), getString(R.string.datepicker));
     }
 
     /**
+     * Method to process the results of DatePickerFragment. Values given are formatted using GregorianCalendar into a sting
+     * to match the pubDate of an Earthquake. A for-loop is used to iterate through the masterList, if the formatted date string
+     * matches an earthquake pubDate it is added to an instantiation of sortedList. sortedList is then applied to the custom
+     * arrayAdapter to display the earthquakes that having matching dates. If no dates are found, a toast message is given to
+     * the user to indicate the date given matched no earthquake pubDate.
      *
      * @param year
      * @param month
@@ -307,24 +320,32 @@ public class MainActivity extends BaseActivity {
         Log.d(TAG, "processDatePickerResult: End");
     }
 
+    /**
+     * Private class used to implement asynchronous task of downloading XML data from BGS Seismology.
+     */
     private class DownloadData extends AsyncTask<String, Void, String> {
         private static final String TAG = "DownloadXML";
 
         /**
+         * Method to be executed after doInBackGround has completed the download of XML data. Data is passed to parseEarthquakes
+         * that will parse the XML data and create an ArrayList of Earthquake classes from the data that is then set to the
+         * masterList in the MainActivity. The masterList is then applied to the custom ArrayAdapter and set to the ListView
+         * listEarthquakes. If no data was found  a toast message is given to the user to indicate that the data was not
+         * downloaded and to check connection.
          *
-         * @param s
+         * @param string String of XML data downloaded.
          */
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Log.d(TAG, "onPostExecute: parameter is " + s);
-            if (s == null){
+        protected void onPostExecute(String string) {
+            super.onPostExecute(string);
+            Log.d(TAG, "onPostExecute: parameter is " + string);
+            if (string == null){
                 Toast.makeText(MainActivity.this,
                         "Whoops, there was a connection error. Please check your connection", Toast.LENGTH_SHORT).show();
             }
             else{
                 parseEarthquakes = new ParseEarthquakes();
-                parseEarthquakes.parse(s);
+                parseEarthquakes.parse(string);
                 setMasterList(parseEarthquakes.getEarthquakes());
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, parseEarthquakes.getEarthquakes());
                 listEarthquakes.setAdapter(earthquakeAdapter);
@@ -332,9 +353,10 @@ public class MainActivity extends BaseActivity {
         }
 
         /**
-         *
-         * @param strings
-         * @return
+         * Method of AsyncTask that will run in a separate thread that that takes URL and implements downloadXML from
+         * BGS Seismology.
+         * @param strings URL to download from
+         * @return        XML as String from downloadXML
          */
         @Override
         protected String doInBackground(String... strings) {
@@ -347,9 +369,10 @@ public class MainActivity extends BaseActivity {
         }
 
         /**
+         * Method that reads XML data from BGS Seismology using BufferedReader to create a concatenated String of XML data.
          *
-         * @param urlPath
-         * @return
+         * @param urlPath URL to perform download from
+         * @return        XML data as String
          */
         private String downLoadXML(String urlPath) {
             StringBuilder xmlResult = new StringBuilder();
