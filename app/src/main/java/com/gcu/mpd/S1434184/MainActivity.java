@@ -41,6 +41,10 @@ public class MainActivity extends BaseActivity {
     private ArrayList<Earthquake> sortedList;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,10 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+
+    /**
+     *
+     */
     public void refreshData(){
 
         if(masterList == null){
@@ -76,6 +84,11 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.d(TAG, "onCreateOptionsMenu: created");
@@ -84,11 +97,21 @@ public class MainActivity extends BaseActivity {
         SearchView searchView = (SearchView) myActionMenuItem.getActionView();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            /**
+             *
+             * @param s
+             * @return
+             */
             @Override
             public boolean onQueryTextSubmit(String s) {
                 return false;
             }
 
+            /**
+             *
+             * @param s
+             * @return
+             */
             @Override
             public boolean onQueryTextChange(String s) {
 
@@ -106,6 +129,11 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected: Begin");
@@ -125,7 +153,7 @@ public class MainActivity extends BaseActivity {
             case R.id.action_A_z:
                 Log.d(TAG, "onOptionsItemSelected: Sort A-z selected");
                 this.sortedList = new ArrayList<>(masterList);
-                Collections.sort(sortedList, Earthquake.locationCompare_Az);
+                Collections.sort(sortedList, Earthquake.locationCompare_A_z);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
@@ -143,7 +171,7 @@ public class MainActivity extends BaseActivity {
             case R.id.action_depth:
                 Log.d(TAG, "onOptionsItemSelected: Sort Depth selected");
                 this.sortedList = new ArrayList<>(masterList);
-                Collections.sort(sortedList, Earthquake.depthCompare);
+                Collections.sort(sortedList, Earthquake.depthCompare_HighLow);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
                 listEarthquakes.setAdapter(earthquakeAdapter);
                 earthquakeAdapter.notifyDataSetChanged();
@@ -188,16 +216,30 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
+    /**
+     *
+     * @param listToSet
+     */
     public void setMasterList(ArrayList listToSet){
         this.masterList = new ArrayList<>();
         masterList.addAll(listToSet);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void showDatePicker(View view) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), getString(R.string.datepicker));
     }
 
+    /**
+     *
+     * @param year
+     * @param month
+     * @param day
+     */
     public void processDatePickerResult(int year, int month, int day) {
         Log.d(TAG, "processDatePickerResult: "+day+" "+month+" "+year);
         sortedList = new ArrayList<>();
@@ -223,6 +265,10 @@ public class MainActivity extends BaseActivity {
     private class DownloadData extends AsyncTask<String, Void, String> {
         private static final String TAG = "DownloadXML";
 
+        /**
+         *
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -239,6 +285,11 @@ public class MainActivity extends BaseActivity {
             }
         }
 
+        /**
+         *
+         * @param strings
+         * @return
+         */
         @Override
         protected String doInBackground(String... strings) {
             Log.d(TAG, "doInBackground: starts with " + strings[0]);
@@ -249,6 +300,11 @@ public class MainActivity extends BaseActivity {
             return rssFeed;
         }
 
+        /**
+         *
+         * @param urlPath
+         * @return
+         */
         private String downLoadXML(String urlPath) {
             StringBuilder xmlResult = new StringBuilder();
 

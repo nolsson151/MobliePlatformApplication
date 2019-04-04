@@ -30,6 +30,9 @@ public class EarthquakeActivity extends MainActivity implements OnMapReadyCallba
     private double geoLong;
 
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: started");
@@ -110,6 +113,11 @@ public class EarthquakeActivity extends MainActivity implements OnMapReadyCallba
         });
 
     }
+
+    /**
+     *
+     * @param outState
+     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -122,30 +130,11 @@ public class EarthquakeActivity extends MainActivity implements OnMapReadyCallba
 
         mapView.onSaveInstanceState(mapViewBundle);
     }
-    @Override
-    protected void onResume() {
-        mapView.onResume();
-        super.onResume();
-    }
 
-    @Override
-    protected void onPause() {
-        mapView.onPause();
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        mapView.onDestroy();
-        super.onDestroy();
-    }
-
-    @Override
-    public void onLowMemory() {
-        mapView.onLowMemory();
-        super.onLowMemory();
-    }
-
+    /**
+     *
+     * @param googleMap
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Log.d(TAG, "onMapReady: started");

@@ -12,14 +12,26 @@ public class ParseEarthquakes {
     private static final String TAG = "ParseEarthquakes";
     private ArrayList<Earthquake> earthquakes;
 
+    /**
+     *
+     */
     public ParseEarthquakes(){
         this.earthquakes = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Earthquake> getEarthquakes(){
         return earthquakes;
     }
 
+    /**
+     *
+     * @param xml
+     * @return
+     */
     public boolean parse(String xml){
         boolean status = true;
         Earthquake earthquake = null;
@@ -67,7 +79,6 @@ public class ParseEarthquakes {
                                 earthquake.setLocation(location);
                                 earthquake.setDepth(depth);
                                 earthquake.setMagnitude(magnitude);
-
                             } else if("link".equalsIgnoreCase(tagname)){
                                 earthquake.setLink(text);
                             } else if("pubDate".equalsIgnoreCase(tagname)){
@@ -87,15 +98,9 @@ public class ParseEarthquakes {
                         break;
 
                     default:
-
                 }
                 eventType = parser.next();
             }
-//            for(Earthquake e: earthquakes) {
-//                Log.d(TAG, "**********************");
-//                Log.d(TAG, e.toString());
-//            }
-
         }catch (Exception e){
             status = false;
             e.printStackTrace();

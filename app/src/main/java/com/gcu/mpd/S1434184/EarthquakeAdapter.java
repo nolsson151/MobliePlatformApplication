@@ -28,6 +28,12 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     public ArrayList<Earthquake> arrayList;
 
 
+    /**
+     *
+     * @param context
+     * @param resource
+     * @param earthquakes
+     */
     public EarthquakeAdapter(Context context, int resource, List<Earthquake> earthquakes) {
         super(context, resource);
         this.layoutResource = resource;
@@ -37,16 +43,32 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         this.arrayList.addAll(earthquakes);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getCount() {
         return earthquakes.size();
     }
 
+    /**
+     *
+     * @param position
+     * @return
+     */
     @Override
     public Object getItem(int position){
         return earthquakes.get(position);
     }
 
+    /**
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
@@ -94,6 +116,11 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     private static final String TAG = "ColorPicker";
 
 
+        /**
+         *
+         * @param viewHolder
+         * @param d
+         */
         public void setColor(ViewHolder viewHolder , double d) {
             Log.d(TAG, "setColor: started on"+ viewHolder.toString());
 
@@ -131,6 +158,10 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         private static final String TAG = "ViewHolder";
         final TextView tvLocation, tvMagnitude, tvDate, tvDepth, tvCoordinates;
 
+        /**
+         *
+         * @param v
+         */
         ViewHolder(View v){
             Log.d(TAG, "ViewHolder: object created");
             this.tvLocation = v.findViewById(R.id.tvLocation);
@@ -141,6 +172,10 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
         }
     }
 
+    /**
+     *
+     * @param charText
+     */
     public void filter(String charText){
         charText = charText.toUpperCase(Locale.getDefault());
         earthquakes.clear();

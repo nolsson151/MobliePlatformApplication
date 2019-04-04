@@ -15,6 +15,10 @@ public class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
     static final String EARTHQUAKE_QUERY = "EARTHQUAKE_QUERY";
 
+    /**
+     *
+     * @param enableHome
+     */
     public void activateToolbar(boolean enableHome) {
         Log.d(TAG, "activateToolbar: starts");
         ActionBar actionBar = getSupportActionBar();
