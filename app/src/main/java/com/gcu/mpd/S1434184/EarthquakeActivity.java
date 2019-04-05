@@ -54,6 +54,7 @@ public class EarthquakeActivity extends MainActivity implements OnMapReadyCallba
         TextView tvLocation = findViewById(R.id.tvLocation);
         tvMagnitude = findViewById(R.id.tvMagnitude);
         TextView tvPubDate = findViewById(R.id.tvPubDate);
+        TextView tvTime = findViewById(R.id.tvTime);
         TextView tvDepth = findViewById(R.id.tvDepth);
         TextView tvCoordinates = findViewById(R.id.tvCoordinates);
         TextView tvLink = findViewById(R.id.tvLink);
@@ -63,6 +64,7 @@ public class EarthquakeActivity extends MainActivity implements OnMapReadyCallba
         String location = bundle.getString("location");
         Double magnitude = bundle.getDouble("magnitude");
         String pubDate = bundle.getString("pubDate");
+        String time = bundle.getString("time");
         int depth = bundle.getInt("depth", 0);
         String link = bundle.getString("link");
         geoLat = bundle.getDouble("geoLat");
@@ -73,6 +75,7 @@ public class EarthquakeActivity extends MainActivity implements OnMapReadyCallba
         tvLocation.setText(location);
         tvMagnitude.setText(String.format("M %s", magnitude));
         tvPubDate.setText(pubDate);
+        tvTime.setText(String.format("Time: %s", time));
         tvDepth.setText(String.format("Depth: %s km", depth));
         tvCoordinates.setText(String.format("Coordinates: %s, %s", geoLat, geoLong));
         tvLink.setText(String.format("Link: %s", link));

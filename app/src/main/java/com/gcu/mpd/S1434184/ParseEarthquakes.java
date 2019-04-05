@@ -104,6 +104,9 @@ public class ParseEarthquakes {
                             } else if("pubDate".equalsIgnoreCase(tagname)){
                                 StringBuilder dateBuilder = new StringBuilder(text);
                                 String date = dateBuilder.substring(5, 16);
+                                String time = dateBuilder.substring(17, dateBuilder.length());
+                                Log.d(TAG, "parse: time is "+time);
+                                earthquake.setTime(time);
                                 earthquake.setPubDate(date);
                             } else if("category".equalsIgnoreCase(tagname)){
                                 earthquake.setCategory(text);

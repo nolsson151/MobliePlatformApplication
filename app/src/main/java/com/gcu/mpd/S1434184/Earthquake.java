@@ -19,6 +19,7 @@ public class Earthquake {
     private String description;
     private String link;
     private String pubDate;
+    private String time;
     private String category;
     private double geoLat;
     private double geoLong;
@@ -156,6 +157,14 @@ public class Earthquake {
      */
     public void setPubDate(String pubDate) {
         this.pubDate = pubDate;
+    }
+
+    public  String getTime(){
+        return time;
+    }
+
+    public void setTime(String time){
+        this.time = time;
     }
 
     /**

@@ -11,112 +11,113 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     tools:context="com.gcu.mpd.S1434184.MainActivity">
-    <item
-        android:id="@+id/action_search"
-        android:icon="@mipmap/ic_search"
-        android:orderInCategory="1"
-        android:title="@string/activity_search"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_date"
-        android:icon="@mipmap/ic_calendar"
-        android:orderInCategory="2"
-        android:title="@string/action_date"
-        app:showAsAction="ifRoom" />
+    <group android:id="@+id/group">
+        <item
+            android:id="@+id/action_search"
+            android:icon="@mipmap/ic_search"
+            android:orderInCategory="1"
+            android:title="@string/activity_search"
+            app:actionViewClass="android.widget.SearchView"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/action_date"
+            android:icon="@mipmap/ic_calendar"
+            android:orderInCategory="2"
+            android:title="@string/action_date"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/action_sort"
+            android:drawable="@android:color/white"
+            android:icon="@mipmap/ic_sort"
+            android:orderInCategory="3"
+            android:title="@string/action_sort"
+            app:showAsAction="ifRoom">
+            <menu>
+                <group android:id="@+id/group1">
+                    <item
+                        android:id="@+id/action_recent"
+                        android:orderInCategory="3"
+                        android:title="@string/action_recent"
+                        app:showAsAction="collapseActionView" />
+                    <item
+                        android:id="@+id/action_A-z"
+                        android:orderInCategory="5"
+                        android:title="@string/action_alphabetically"
+                        app:showAsAction="collapseActionView">
+                        <menu>
+                            <group>
+                                <item
+                                    android:id="@+id/action_Az"
+                                    android:title="@string/action_Az">
 
-    <item
-        android:id="@+id/action_sort"
-        android:drawable="@android:color/white"
-        android:icon="@mipmap/ic_sort"
-        android:orderInCategory="3"
-        android:title="@string/action_sort"
-        app:showAsAction="ifRoom">
-        <menu>
-            <group android:id="@+id/group1">
-                <item
-                    android:id="@+id/action_recent"
-                    android:orderInCategory="3"
-                    android:title="@string/action_recent"
-                    app:showAsAction="collapseActionView" />
-                <item
-                    android:id="@+id/action_A-z"
-                    android:orderInCategory="5"
-                    android:title="@string/action_alphabetically"
-                    app:showAsAction="collapseActionView">
-                    <menu>
-                        <group>
-                            <item
-                                android:id="@+id/action_Az"
-                                android:title="@string/action_Az">
+                                </item>
+                                <item
+                                    android:id="@+id/action_Za"
+                                    android:title="@string/action_Za"></item>
+                            </group>
+                        </menu>
+                    </item>
+                    <item
+                        android:id="@+id/action_magnitude"
+                        android:orderInCategory="6"
+                        android:title="@string/action_magnitude"
+                        app:showAsAction="collapseActionView">
+                        <menu>
+                            <group>
+                                <item
+                                    android:id="@+id/action_highest"
+                                    android:title="@string/action_highest">
 
-                            </item>
-                            <item
-                                android:id="@+id/action_Za"
-                                android:title="@string/action_Za"></item>
-                        </group>
-                    </menu>
-                </item>
-                <item
-                    android:id="@+id/action_magnitude"
-                    android:orderInCategory="6"
-                    android:title="@string/action_magnitude"
-                    app:showAsAction="collapseActionView" >
-                    <menu>
-                        <group>
-                            <item
-                                android:id="@+id/action_highest"
-                                android:title="@string/action_highest">
+                                </item>
+                                <item
+                                    android:id="@+id/action_lowest"
+                                    android:title="@string/action_lowest"></item>
+                            </group>
+                        </menu>
+                    </item>
+                    <item
+                        android:id="@+id/action_depth"
+                        android:orderInCategory="7"
+                        android:title="@string/action_depth"
+                        app:showAsAction="collapseActionView">
+                        <menu>
+                            <group>
+                                <item
+                                    android:id="@+id/action_deep"
+                                    android:title="@string/action_highest">
 
-                            </item>
-                            <item
-                                android:id="@+id/action_lowest"
-                                android:title="@string/action_lowest"></item>
-                        </group>
-                    </menu>
-                </item>
-                <item
-                    android:id="@+id/action_depth"
-                    android:orderInCategory="7"
-                    android:title="@string/action_depth"
-                    app:showAsAction="collapseActionView" >
-                    <menu>
-                        <group>
-                            <item
-                                android:id="@+id/action_deep"
-                                android:title="@string/action_highest">
-
-                            </item>
-                            <item
-                                android:id="@+id/action_shallow"
-                                android:title="@string/action_lowest"></item>
-                        </group>
-                    </menu>
-                </item>
-                <item
-                    android:id="@+id/action_coordinates"
-                    android:orderInCategory="8"
-                    android:title="@string/action_coordinates"
-                    app:showAsAction="collapseActionView">
-                    <menu>
-                        <group android:id="@+id/group3">
-                            <item
-                                android:id="@+id/action_north"
-                                android:title="@string/action_north" />
-                            <item
-                                android:id="@+id/action_south"
-                                android:title="@string/action_south" />
-                            <item
-                                android:id="@+id/action_east"
-                                android:title="@string/action_east" />
-                            <item
-                                android:id="@+id/action_west"
-                                android:title="@string/action_west" />
-                        </group>
-                    </menu>
-                </item>
-            </group>
-        </menu>
-    </item>
+                                </item>
+                                <item
+                                    android:id="@+id/action_shallow"
+                                    android:title="@string/action_lowest"></item>
+                            </group>
+                        </menu>
+                    </item>
+                    <item
+                        android:id="@+id/action_coordinates"
+                        android:orderInCategory="8"
+                        android:title="@string/action_coordinates"
+                        app:showAsAction="collapseActionView">
+                        <menu>
+                            <group android:id="@+id/group3">
+                                <item
+                                    android:id="@+id/action_north"
+                                    android:title="@string/action_north" />
+                                <item
+                                    android:id="@+id/action_south"
+                                    android:title="@string/action_south" />
+                                <item
+                                    android:id="@+id/action_east"
+                                    android:title="@string/action_east" />
+                                <item
+                                    android:id="@+id/action_west"
+                                    android:title="@string/action_west" />
+                            </group>
+                        </menu>
+                    </item>
+                </group>
+            </menu>
+        </item>
+    </group>
 
 </menu>

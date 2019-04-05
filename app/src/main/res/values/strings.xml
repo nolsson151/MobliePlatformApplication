@@ -11,6 +11,7 @@
     <string name="earthquake_location">Location</string>
     <string name="earthquake_magnitude">Magnitude</string>
     <string name="earthquake_date">Date</string>
+    <string name="earthquake_time">Time</string>
     <string name="earthquake_depth">Depth</string>
     <string name="earthquake_coordinates">Coordinates</string>
     <string name="earthquake_link">Link</string>

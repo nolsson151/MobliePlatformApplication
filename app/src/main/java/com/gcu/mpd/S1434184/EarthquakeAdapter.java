@@ -114,6 +114,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
                 intent.putExtra("depth", earthquakes.get(position).getDepth());
                 intent.putExtra("link", earthquakes.get(position).getLink());
                 intent.putExtra("pubDate", earthquakes.get(position).getPubDate());
+                intent.putExtra("time",earthquakes.get(position).getTime());
                 intent.putExtra("category", earthquakes.get(position).getCategory());
                 intent.putExtra("geoLat", earthquakes.get(position).getGeoLat());
                 intent.putExtra("geoLong", earthquakes.get(position).getGeoLong());
