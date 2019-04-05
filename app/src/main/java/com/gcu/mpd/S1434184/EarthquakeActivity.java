@@ -1,10 +1,5 @@
 package com.gcu.mpd.S1434184;
 
-//
-// Name                 Niklas Olsson
-// Student ID           S1434184
-// Programme of Study   Computing
-//
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -21,6 +16,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/**
+ *  * Name                 Niklas Olsson
+ *  * Student ID           S1434184
+ *  * Programme of Study   Computing
+ *  *
+ *  * @author Niklas
+ *  * @version 1.0
+ */
 public class EarthquakeActivity extends MainActivity implements OnMapReadyCallback {
     private static final String TAG = "EarthquakeActivity";
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -38,7 +41,7 @@ public class EarthquakeActivity extends MainActivity implements OnMapReadyCallba
      * intent, a MapView using GoogleMaps API is created using the coordinates of the earthquake
      * selected.
      *
-     * @param savedInstanceState
+     * @param savedInstanceState Loads activity state
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

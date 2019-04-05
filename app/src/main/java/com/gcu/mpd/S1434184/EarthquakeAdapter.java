@@ -20,6 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ *  * Name                 Niklas Olsson
+ *  * Student ID           S1434184
+ *  * Programme of Study   Computing
+ *  *
+ *  * @author Niklas
+ *  * @version 1.0
+ */
 public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
     private static final String TAG = "EarthquakeAdapter";
     private final int layoutResource;

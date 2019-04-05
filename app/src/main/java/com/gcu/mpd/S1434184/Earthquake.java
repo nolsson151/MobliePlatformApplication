@@ -1,13 +1,15 @@
 package com.gcu.mpd.S1434184;
 
-//
-// Name                 Niklas Olsson
-// Student ID           S1434184
-// Programme of Study   Computing
-//
-
 import java.util.Comparator;
 
+/**
+ *  * Name                 Niklas Olsson
+ *  * Student ID           S1434184
+ *  * Programme of Study   Computing
+ *  *
+ *  * @author Niklas
+ *  * @version 1.0
+ */
 public class Earthquake {
 
     private String title;

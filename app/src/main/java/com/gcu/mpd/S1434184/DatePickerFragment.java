@@ -16,6 +16,14 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 
 
+/**
+ *  * Name                 Niklas Olsson
+ *  * Student ID           S1434184
+ *  * Programme of Study   Computing
+ *  *
+ *  * @author Niklas
+ *  * @version 1.0
+ */
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 

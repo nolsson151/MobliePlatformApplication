@@ -31,6 +31,7 @@
         <activity
             android:name="com.gcu.mpd.S1434184.EarthquakeActivity"
             android:label="@string/title_activity_earthquake" />
+        <activity android:name=".BaseActivity" />
     </application>
 
 </manifest>

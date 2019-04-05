@@ -8,6 +8,14 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.StringReader;
 import java.util.ArrayList;
 
+/**
+ *  * Name                 Niklas Olsson
+ *  * Student ID           S1434184
+ *  * Programme of Study   Computing
+ *  *
+ *  * @author Niklas
+ *  * @version 1.0
+ */
 public class ParseEarthquakes {
     private static final String TAG = "ParseEarthquakes";
     private ArrayList<Earthquake> earthquakes;
@@ -23,7 +31,7 @@ public class ParseEarthquakes {
     /**
      * Method returns an ArrayList of earthquakes.
      *
-     * @return
+     * @return ArrayList of Earthquakes
      */
     public ArrayList<Earthquake> getEarthquakes(){
         return earthquakes;

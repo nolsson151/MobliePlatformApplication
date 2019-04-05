@@ -1,16 +1,20 @@
 package com.gcu.mpd.S1434184;
 
-//
-// Name                 Niklas Olsson
-// Student ID           S1434184
-// Programme of Study   Computing
-//
+
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
+/**
+ *  * Name                 Niklas Olsson
+ *  * Student ID           S1434184
+ *  * Programme of Study   Computing
+ *  *
+ *  * @author Niklas
+ *  * @version 1.0
+ */
 public class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
     static final String EARTHQUAKE_QUERY = "EARTHQUAKE_QUERY";

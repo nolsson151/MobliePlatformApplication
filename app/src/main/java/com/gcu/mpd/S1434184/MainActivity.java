@@ -31,6 +31,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 
+/**
+ *  * Name                 Niklas Olsson
+ *  * Student ID           S1434184
+ *  * Programme of Study   Computing
+ *  *
+ *  * @author Niklas
+ *  * @version 1.0
+ */
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     private ListView listEarthquakes;
@@ -294,9 +302,9 @@ public class MainActivity extends BaseActivity {
      * arrayAdapter to display the earthquakes that having matching dates. If no dates are found, a toast message is given to
      * the user to indicate the date given matched no earthquake pubDate.
      *
-     * @param year
-     * @param month
-     * @param day
+     * @param year int of year
+     * @param month int of month
+     * @param day int of day
      */
     public void processDatePickerResult(int year, int month, int day) {
         Log.d(TAG, "processDatePickerResult: "+day+" "+month+" "+year);
