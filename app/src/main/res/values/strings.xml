@@ -16,7 +16,6 @@
     <string name="earthquake_coordinates">Coordinates</string>
     <string name="earthquake_link">Link</string>
     <string name="earthquake_details">Details</string>
-    <string name="magnitude_symbol">M %s</string>
     <string name="activity_search">Search</string>
     <string name="action_date">Date</string>
     <string name="action_sort">Sort</string>

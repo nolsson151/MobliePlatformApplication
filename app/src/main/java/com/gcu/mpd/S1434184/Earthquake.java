@@ -13,6 +13,7 @@ import java.util.Comparator;
 public class Earthquake {
 
     private String title;
+
     private double magnitude;
     private String location;
     private int depth;

@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -85,7 +86,6 @@ public class MainActivity extends BaseActivity {
      * or simply attempt to download the earthquake data. This is in case of no internet connection or server side faults.
      */
     public void refreshData(){
-
         if(masterList == null){
             DownloadData downloadData = new DownloadData();
             downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
@@ -96,6 +96,8 @@ public class MainActivity extends BaseActivity {
             masterList.clear();
             DownloadData downloadData = new DownloadData();
             downloadData.execute("http://quakes.bgs.ac.uk/feeds/MhSeismology.xml");
+
+
         }
     }
 
@@ -356,6 +358,7 @@ public class MainActivity extends BaseActivity {
             else{
                 parseEarthquakes = new ParseEarthquakes();
                 parseEarthquakes.parse(string);
+
                 setMasterList(parseEarthquakes.getEarthquakes());
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, parseEarthquakes.getEarthquakes());
                 listEarthquakes.setAdapter(earthquakeAdapter);

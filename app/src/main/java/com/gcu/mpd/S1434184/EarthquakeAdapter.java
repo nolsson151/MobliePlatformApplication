@@ -161,7 +161,7 @@ public class EarthquakeAdapter extends ArrayAdapter implements Filterable {
             viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded7));
         }
         else{
-            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded2));
+            viewHolder.tvMagnitude.setBackground(getContext().getResources().getDrawable(R.drawable.rounded8));
         }
     }
 
