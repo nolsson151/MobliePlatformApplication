@@ -138,6 +138,7 @@ public class MainActivity extends BaseActivity {
              */
             @Override
             public boolean onQueryTextChange(String s) {
+                Log.d(TAG, "onQueryTextChange: Search option selected");
 
                 if (TextUtils.isEmpty(s)) {
                     earthquakeAdapter.filter("");
@@ -183,7 +184,7 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.action_Az:
-                Log.d(TAG, "onOptionsItemSelected: Sort A-z selected");
+                Log.d(TAG, "onOptionsItemSelected: Sort A-Z selected");
                 this.sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.locationCompare_A_z);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
@@ -192,7 +193,7 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.action_Za:
-                Log.d(TAG, "onOptionsItemSelected: Sort A-z selected");
+                Log.d(TAG, "onOptionsItemSelected: Sort Z-A selected");
                 this.sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.locationCompare_Z_a);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
@@ -201,7 +202,7 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.action_highest:
-                Log.d(TAG, "onOptionsItemSelected: Sort Magnitude selected");
+                Log.d(TAG, "onOptionsItemSelected: Sort Magnitude High-Low selected");
                 this.sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.magnitudeCompare_HighLow);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
@@ -210,7 +211,7 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.action_lowest:
-                Log.d(TAG, "onOptionsItemSelected: Sort Magnitude selected");
+                Log.d(TAG, "onOptionsItemSelected: Sort Magnitude Low-High selected");
                 this.sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.magnitudeCompare_LowHigh);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
@@ -219,7 +220,7 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.action_deep:
-                Log.d(TAG, "onOptionsItemSelected: Sort Depth selected");
+                Log.d(TAG, "onOptionsItemSelected: Sort Depth High-Low selected");
                 this.sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.depthCompare_HighLow);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
@@ -228,7 +229,7 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.action_shallow:
-                Log.d(TAG, "onOptionsItemSelected: Sort Depth selected");
+                Log.d(TAG, "onOptionsItemSelected: Sort Depth Low-High selected");
                 this.sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.depthCompare_LowHigh);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
@@ -245,7 +246,7 @@ public class MainActivity extends BaseActivity {
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_south:
-                Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
+                Log.d(TAG, "onOptionsItemSelected: Sort Most southerly selected");
                 sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.positionCompare_South);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
@@ -253,7 +254,7 @@ public class MainActivity extends BaseActivity {
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_east:
-                Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
+                Log.d(TAG, "onOptionsItemSelected: Sort Most easterly selected");
                 sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.positionCompare_East);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
@@ -261,7 +262,7 @@ public class MainActivity extends BaseActivity {
                 earthquakeAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_west:
-                Log.d(TAG, "onOptionsItemSelected: Sort Most northerly selected");
+                Log.d(TAG, "onOptionsItemSelected: Sort Most westerly selected");
                 sortedList = new ArrayList<>(masterList);
                 Collections.sort(sortedList, Earthquake.positionCompare_West);
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, sortedList);
@@ -284,6 +285,7 @@ public class MainActivity extends BaseActivity {
     public void setMasterList(ArrayList arrayList){
         this.masterList = new ArrayList<>();
         masterList.addAll(arrayList);
+        Log.d(TAG, "setMasterList: Earthquakes added to masterList");
     }
 
     /**
@@ -357,6 +359,7 @@ public class MainActivity extends BaseActivity {
                 setMasterList(parseEarthquakes.getEarthquakes());
                 earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, R.layout.list_record, parseEarthquakes.getEarthquakes());
                 listEarthquakes.setAdapter(earthquakeAdapter);
+                Log.d(TAG, "onPostExecute: Earthquakes applied to ListView");
             }
         }
 

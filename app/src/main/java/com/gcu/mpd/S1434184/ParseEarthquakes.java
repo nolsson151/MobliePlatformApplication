@@ -49,6 +49,7 @@ public class ParseEarthquakes {
      * @return Status if parsing was completed successfully.
      */
     public boolean parse(String xml){
+        Log.d(TAG, "parse: Begin");
         boolean status = true;
         Earthquake earthquake = null;
         boolean inItem = false;
@@ -105,7 +106,6 @@ public class ParseEarthquakes {
                                 StringBuilder dateBuilder = new StringBuilder(text);
                                 String date = dateBuilder.substring(5, 16);
                                 String time = dateBuilder.substring(17, dateBuilder.length());
-                                Log.d(TAG, "parse: time is "+time);
                                 earthquake.setTime(time);
                                 earthquake.setPubDate(date);
                             } else if("category".equalsIgnoreCase(tagname)){
@@ -128,6 +128,7 @@ public class ParseEarthquakes {
             status = false;
             e.printStackTrace();
         }
+        Log.d(TAG, "parse: Data successfully parsed. Earthquakes in array is "+earthquakes.size());
         return status;
     }
 }

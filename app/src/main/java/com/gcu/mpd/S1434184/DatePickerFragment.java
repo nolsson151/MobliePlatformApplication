@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
@@ -27,6 +28,8 @@ import java.util.Calendar;
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
+    private static final String TAG = "DatePickerFragment";
+
     /**
      * Method used to override onCreateDialog create a DatePickerDialog fragment. A calendar object
      * is created and a listener year for the year, month, and day which will await input from user
@@ -38,6 +41,7 @@ public class DatePickerFragment extends DialogFragment
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateDialog: DatePickerDialog created");
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
@@ -58,6 +62,7 @@ public class DatePickerFragment extends DialogFragment
      */
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+        Log.d(TAG, "onDateSet:  Date choosen "+day+" "+month+" "+year);
         MainActivity activity = (MainActivity) getActivity();
         activity.processDatePickerResult(year, month, day);
     }
