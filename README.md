@@ -1,6 +1,6 @@
 # Moblie Platform Earthquake Appliation
 
-### All data used in this application was provied by the British Geological Survey 
+### All data used in this application was provied by the [British Geological Survey](http://earthquakes.bgs.ac.uk/)
 
 ## About
 
