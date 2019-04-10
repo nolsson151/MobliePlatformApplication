@@ -72,7 +72,7 @@ public class MainActivity extends BaseActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshData(); // your code
+                refreshData();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
